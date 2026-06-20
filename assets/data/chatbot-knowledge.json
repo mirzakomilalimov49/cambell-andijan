@@ -1,0 +1,256 @@
+{
+  "config": {
+    "botName": {
+      "uz": "Cambell Yordamchi",
+      "ru": "Помощник Cambell",
+      "en": "Cambell Assistant"
+    },
+    "welcome": {
+      "uz": "Assalomu alaykum! Men Cambell Andijan kompaniyasining sun'iy intellekt yordamchisiman. Mahsulotlar, aloqa, kompaniya haqida va boshqa savollaringizga javob beraman.",
+      "ru": "Здравствуйте! Я ИИ-помощник Cambell Andijan. Отвечу на вопросы о продукции, контактах и компании.",
+      "en": "Hello! I'm the Cambell Andijan AI assistant. I can answer questions about our products, company, and contacts."
+    },
+    "fallback": {
+      "uz": "Kechirasiz, bu savolga aniq javob topa olmadim. Batafsil ma'lumot uchun +998 99 530 44 35 raqamiga qo'ng'iroq qiling yoki mirzakomilalimov02@gmail.com ga yozing.",
+      "ru": "Извините, я не нашёл точного ответа. Позвоните +998 99 530 44 35 или напишите на mirzakomilalimov02@gmail.com.",
+      "en": "Sorry, I couldn't find a precise answer. Please call +998 99 530 44 35 or email mirzakomilalimov02@gmail.com."
+    },
+    "placeholder": {
+      "uz": "Savolingizni yozing...",
+      "ru": "Введите ваш вопрос...",
+      "en": "Type your question..."
+    },
+    "send": { "uz": "Yuborish", "ru": "Отправить", "en": "Send" },
+    "quickReplies": {
+      "uz": ["Mahsulotlar", "Aloqa", "Kompaniya haqida", "Ishga qabul"],
+      "ru": ["Продукция", "Контакты", "О компании", "Вакансии"],
+      "en": ["Products", "Contact", "About company", "Careers"]
+    }
+  },
+  "entries": {
+    "uz": [
+      {
+        "keywords": ["salom", "assalom", "hayrli", "hello", "hi", "privet"],
+        "answer": "Assalomu alaykum! Cambell Andijan yordamchisiga xush kelibsiz. Sizga qanday yordam bera olaman?"
+      },
+      {
+        "keywords": ["kompaniya", "kim", "filial", "hamkor", "cambell", "guangtong", "lanzhou", "haqida", "tarix", "profil"],
+        "answer": "Cambell Andijan — Lanzhou Guangtong New Energy Automobile Co., Ltd ning O'zbekistondagi rasmiy mintaqaviy hamkori va Andijon filiali. 2017-yilda tashkil etilgan Lanzhou Guangtong Gansu provinsiyasidagi yagona avtobus ishlab chiqaruvchisi. Biz yangi energiya avtobuslari, tijorat transporti, batareya va quvvatlash mahsulotlarini yetkazib beramiz va texnik xizmat ko'rsatamiz.",
+        "link": "about.html"
+      },
+      {
+        "keywords": ["telefon", "aloqa", "raqam", "qongiroq", "boglanish", "bog'lanish", "call", "hotline", "liniya"],
+        "answer": "Biz bilan bog'lanish:\n📞 Telefon: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Manzil: Andijon shahri, O'zbekiston\n⏰ Xizmat ko'rsatish liniyasi: 24/7",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["email", "pochta", "gmail", "xat", "yozish"],
+        "answer": "Elektron pochta manzilimiz: mirzakomilalimov02@gmail.com. Savollaringiz yoki buyurtma uchun yozishingiz mumkin.",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["manzil", "qayer", "andijon", "joylashuv", "ofis", "xarita"],
+        "answer": "Biz Andijon shahri, O'zbekiston da joylashganmiz. Cambell Andijan — Lanzhou Guangtong kompaniyasining mahalliy filiali.",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["mahsulot", "avtobus", "bus", "transport", "mashina", "katalog", "nima sotiladi"],
+        "answer": "Mahsulotlarimiz:\n• 12m klassik avtobus\n• 10.5m va 9.5m klassik avtobuslar\n• 8.5m klassik avtobus\n• Klassik yo'l avtobusi\n• 12m toza elektr shahar avtobusi\n• Koster tijorat avtomobili\n• Logistika avtomobili V5\n• Batareya bloki va batareya mahsulotlari\n• Quvvatlash mahsulotlari\n• Dvigatel elektr boshqaruvi",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["elektr", "elektro", "yangi energiya", "toza", "yashil", "green", "ev", "batareya", "quvvatlash", "zaryad"],
+        "answer": "Biz yangi energiya (toza elektr) transport vositalarini taklif qilamiz: 12m toza elektr shahar avtobusi, LTO batareyalar, quvvatlash mahsulotlari va energiya saqlash tizimlari. \"BIZ YASHIL yo'ldamiz\" — kompaniya shiori.",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["patent", "sertifikat", "standart", "litsenziya"],
+        "answer": "Lanzhou Guangtong va Cambell Andijan yangi energiya avtomobillari, LTO batareyalar, elektr dvigatel boshqaruvi va energiya saqlash tizimlari bo'yicha ko'plab patentlar va sertifikatlarga ega. Xalqaro sifat standartlariga rioya qilamiz.",
+        "link": "patents.html"
+      },
+      {
+        "keywords": ["yangilik", "news", "voqea", "tashrif", "vazir", "hokim", "makhkamov", "delegatsiya"],
+        "answer": "So'nggi yangiliklar:\n• 2025/11/01 — Transport vaziri va Andijon hokimi elektr avtobuslarimizda tashrif buyurdi\n• 2025/03/01 — O'zbekiston delegatsiyasi Lanzhou zavodiga tashrif buyurdi\n• 2025/01/10 — China Exim Bank vakillari zavodga tashrif buyurdi\n• 2024/12/29 — Yevropada muzokaralar o'tkazildi",
+        "link": "news.html"
+      },
+      {
+        "keywords": ["ish", "vakansiya", "qabul", "join", "resume", "rezyume", "ishga", "bo'sh"],
+        "answer": "Cambell Andijan jamoasiga qo'shilish uchun iqtidorli mutaxassislarni qidiramiz. Rezyumengizni mirzakomilalimov02@gmail.com ga yuboring yoki +998 99 530 44 35 ga qo'ng'iroq qiling.",
+        "link": "join.html"
+      },
+      {
+        "keywords": ["fikr", "shikoyat", "taklif", "feedback", "mulohaza"],
+        "answer": "Fikr va takliflaringizni feedback sahifamiz orqali yuborishingiz mumkin. Biz har bir murojaatni diqqat bilan ko'rib chiqamiz.",
+        "link": "feedback.html"
+      },
+      {
+        "keywords": ["narx", "baho", "qancha", "price", "cost", "stoimost"],
+        "answer": "Mahsulot narxlari model va konfiguratsiyaga qarab farq qiladi. Aniq narx uchun +998 99 530 44 35 raqamiga qo'ng'iroq qiling yoki mirzakomilalimov02@gmail.com ga yozing — mutaxassislarimiz yordam beradi."
+      },
+      {
+        "keywords": ["xizmat", "servis", "ta'mirlash", "tamir", "qollab", "qo'llab", "texnik", "support"],
+        "answer": "Cambell Andijan texnik xizmat ko'rsatish, yetkazib berish va mahalliy bozor rivojlantirish bilan shug'ullanadi. Xizmat ko'rsatish liniyasi: +998 99 530 44 35 (24/7)."
+      },
+      {
+        "keywords": ["rahmat", "tashakkur", "thanks", "spasibo"],
+        "answer": "Marhamat! Yana savollaringiz bo'lsa, bemalol so'rang. Yaxshi kun tilaymiz!"
+      }
+    ],
+    "ru": [
+      {
+        "keywords": ["привет", "здравствуй", "добрый", "hello", "hi"],
+        "answer": "Здравствуйте! Добро пожаловать в помощник Cambell Andijan. Чем могу помочь?"
+      },
+      {
+        "keywords": ["компания", "филиал", "партнер", "cambell", "guangtong", "lanzhou", "о нас", "история", "профиль"],
+        "answer": "Cambell Andijan — официальный региональный партнёр и филиал Lanzhou Guangtong New Energy Automobile Co., Ltd в Узбекистане. Lanzhou Guangtong основана в 2017 году и является единственным производителем автобусов в провинции Ганьсу. Мы поставляем новые энергетические автобусы, коммерческий транспорт, аккумуляторы и зарядные устройства.",
+        "link": "about.html"
+      },
+      {
+        "keywords": ["телефон", "контакт", "номер", "звонок", "связаться", "горячая", "линия"],
+        "answer": "Контакты:\n📞 Телефон: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Адрес: Андижан, Узбекистан\n⏰ Горячая линия: 24/7",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["email", "почта", "gmail", "написать"],
+        "answer": "Электронная почта: mirzakomilalimov02@gmail.com",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["адрес", "где", "андижан", "расположение", "офис"],
+        "answer": "Мы находимся в Андижане, Узбекистан. Cambell Andijan — местный филиал Lanzhou Guangtong.",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["продукция", "автобус", "транспорт", "машина", "каталог", "товар"],
+        "answer": "Наша продукция:\n• Классический автобус 12м, 10.5м, 9.5м, 8.5м\n• Междугородний автобус\n• 12м чисто электрический городской автобус\n• Коммерческий микроавтобус\n• Логистический автомобиль V5\n• Аккумуляторные блоки и зарядные устройства\n• Электрическое управление двигателем",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["электро", "электрический", "новая энергия", "зеленый", "green", "батарея", "зарядка"],
+        "answer": "Мы предлагаем транспорт на новой энергии: электрические автобусы, LTO-аккумуляторы, зарядные устройства и системы хранения энергии. Девиз: «Мы идём по пути ЗЕЛЁНОГО развития».",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["патент", "сертификат", "стандарт", "лицензия"],
+        "answer": "Lanzhou Guangtong и Cambell Andijan имеют многочисленные патенты и сертификаты в области новой энергетики, LTO-аккумуляторов и систем хранения энергии.",
+        "link": "patents.html"
+      },
+      {
+        "keywords": ["новости", "news", "визит", "министр", "губернатор", "делегация"],
+        "answer": "Последние новости:\n• 2025/11/01 — Министр транспорта и губернатор Андижана посетили наши электробусы\n• 2025/03/01 — Делегация Узбекистана посетила завод в Ланьчжоу\n• 2025/01/10 — Визит China Exim Bank\n• 2024/12/29 — Визит в Европу",
+        "link": "news.html"
+      },
+      {
+        "keywords": ["работа", "вакансия", "карьера", "резюме", "join", "трудоустройство"],
+        "answer": "Мы ищем талантливых специалистов. Отправьте резюме на mirzakomilalimov02@gmail.com или позвоните +998 99 530 44 35.",
+        "link": "join.html"
+      },
+      {
+        "keywords": ["отзыв", "feedback", "жалоба", "предложение"],
+        "answer": "Отправьте отзыв через страницу обратной связи на нашем сайте.",
+        "link": "feedback.html"
+      },
+      {
+        "keywords": ["цена", "стоимость", "сколько", "price", "cost"],
+        "answer": "Цены зависят от модели и комплектации. Для точной информации звоните +998 99 530 44 35 или пишите на mirzakomilalimov02@gmail.com."
+      },
+      {
+        "keywords": ["сервис", "обслуживание", "ремонт", "техническая", "поддержка"],
+        "answer": "Cambell Andijan предоставляет техническое обслуживание и поддержку. Горячая линия: +998 99 530 44 35 (24/7)."
+      },
+      {
+        "keywords": ["спасибо", "благодарю", "thanks"],
+        "answer": "Пожалуйста! Если есть ещё вопросы — обращайтесь. Хорошего дня!"
+      }
+    ],
+    "en": [
+      {
+        "keywords": ["hello", "hi", "hey", "good morning", "good day"],
+        "answer": "Hello! Welcome to Cambell Andijan assistant. How can I help you today?"
+      },
+      {
+        "keywords": ["company", "about", "branch", "partner", "cambell", "guangtong", "lanzhou", "profile", "history"],
+        "answer": "Cambell Andijan is the official regional partner and Andijan branch of Lanzhou Guangtong New Energy Automobile Co., Ltd in Uzbekistan. Founded in 2017, Lanzhou Guangtong is the only bus manufacturer in Gansu Province. We deliver new energy buses, commercial vehicles, batteries and charging products.",
+        "link": "about.html"
+      },
+      {
+        "keywords": ["phone", "contact", "number", "call", "hotline", "reach"],
+        "answer": "Contact us:\n📞 Phone: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Address: Andijan, Uzbekistan\n⏰ Service Hotline: 24/7",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["email", "mail", "gmail", "write"],
+        "answer": "Email: mirzakomilalimov02@gmail.com",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["address", "where", "andijan", "location", "office"],
+        "answer": "We are located in Andijan, Uzbekistan. Cambell Andijan is the local branch of Lanzhou Guangtong.",
+        "link": "contact.html"
+      },
+      {
+        "keywords": ["product", "bus", "vehicle", "transport", "catalog", "sell", "buy", "want", "purchase"],
+        "answer": "Our products:\n• 12m, 10.5m, 9.5m, 8.5m classic buses\n• Classic road bus\n• 12m pure electric city bus\n• Coaster commercial vehicle\n• Logistics Vehicle V5\n• Battery packs and charging products\n• Electric motor control",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["electric", "new energy", "green", "ev", "battery", "charging"],
+        "answer": "We offer new energy transport: electric buses, LTO batteries, charging products and energy storage. Our motto: \"We are going along with GREEN.\"",
+        "link": "product.html"
+      },
+      {
+        "keywords": ["patent", "certificate", "standard", "license"],
+        "answer": "Lanzhou Guangtong and Cambell Andijan hold numerous patents and certifications in new energy vehicles, LTO batteries and energy storage systems.",
+        "link": "patents.html"
+      },
+      {
+        "keywords": ["news", "visit", "minister", "governor", "delegation"],
+        "answer": "Latest news:\n• 2025/11/01 — Transport Minister and Andijan Governor visited our electric buses\n• 2025/03/01 — Uzbekistan delegation visited Lanzhou plant\n• 2025/01/10 — China Exim Bank visit\n• 2024/12/29 — European negotiations",
+        "link": "news.html"
+      },
+      {
+        "keywords": ["job", "career", "vacancy", "join", "resume", "hiring"],
+        "answer": "We are hiring talented professionals. Send your resume to mirzakomilalimov02@gmail.com or call +998 99 530 44 35.",
+        "link": "join.html"
+      },
+      {
+        "keywords": ["feedback", "complaint", "suggestion", "review"],
+        "answer": "Please send your feedback through our feedback page on the website.",
+        "link": "feedback.html"
+      },
+      {
+        "keywords": ["price", "cost", "how much", "quote"],
+        "answer": "Prices depend on model and configuration. For accurate pricing call +998 99 530 44 35 or email mirzakomilalimov02@gmail.com."
+      },
+      {
+        "keywords": ["service", "support", "maintenance", "repair", "technical"],
+        "answer": "Cambell Andijan provides technical support and maintenance. Service Hotline: +998 99 530 44 35 (24/7)."
+      },
+      {
+        "keywords": ["thank", "thanks", "appreciate"],
+        "answer": "You're welcome! Feel free to ask if you have more questions. Have a great day!"
+      }
+    ]
+  },
+  "quickReplyMap": {
+    "uz": {
+      "Mahsulotlar": "qanday mahsulotlar bor",
+      "Aloqa": "telefon raqam",
+      "Kompaniya haqida": "kompaniya haqida",
+      "Ishga qabul": "ishga qabul"
+    },
+    "ru": {
+      "Продукция": "продукция",
+      "Контакты": "телефон",
+      "О компании": "о компании",
+      "Вакансии": "вакансия"
+    },
+    "en": {
+      "Products": "products",
+      "Contact": "phone contact",
+      "About company": "about company",
+      "Careers": "job vacancy"
+    }
+  }
+}

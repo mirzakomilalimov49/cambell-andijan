@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "siteName": "Cambell Andijan",
+    "siteNameFull": "Lanzhou Guangtong New Energy Automobile Co., Ltd — Andijon filiali",
+    "siteNameShort": "兰州广通新能源汽车有限公司",
+    "tagline": "Jamiyat, atrof-muhit, insonlar va kelajak uchun sodiqmiz.",
+    "tagline2": "BIZ YASHIL yo'ldamiz.",
+    "description": "Cambell Andijan — Lanzhou Guangtong New Energy Automobile kompaniyasining Andijon viloyatidagi rasmiy hamkori va filiali. Yangi energiya avtomobillari, avtobuslar va batareya mahsulotlari."
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "contact": "Aloqa",
+    "companyProfile": "Kompaniya profili",
+    "companyPatents": "Kompaniya patentlari",
+    "feedback": "Fikr-mulohaza",
+    "contactLink": "Aloqa",
+    "product": "Mahsulot",
+    "all": "Barchasi",
+    "commercialVehicle": "Tijorat avtobuslar seriyasi",
+    "bus95": "9.5m klassik avtobus",
+    "bus18": "18m qo'shma avtobus",
+    "roadBus": "Klassik yo'l avtobusi",
+    "bus85": "8.5m klassik avtobus",
+    "bus105": "10.5m klassik avtobus",
+    "bus12": "12m klassik avtobus",
+    "specialVehicle": "Maxsus texnika seriyasi",
+    "coaster": "Koster tijorat avtomobili",
+    "batteryPack": "Batareya bloki",
+    "batteryProducts": "Batareya mahsulotlari",
+    "chargingProducts": "Quvvatlash mahsulotlari",
+    "electricControl": "Dvigatel elektr boshqaruvi",
+    "news": "Yangiliklar",
+    "enterpriseNews": "Korxona yangiliklari",
+    "industryInfo": "Sanoat ma'lumotlari",
+    "joinUs": "Bizga qo'shiling"
+  },
+  "footer": {
+    "serviceHotline": "Xizmat ko'rsatish liniyasi",
+    "copyright": "Cambell Andijan — Lanzhou Guangtong New Energy Automobile Co., Ltd Andijon filiali",
+    "powered": "Cambell Andijan © 2026"
+  },
+  "carousel": { "prev": "Oldingi", "next": "Keyingi" },
+  "breadcrumb": { "home": "Bosh sahifa" },
+  "home": {
+    "products": "Mahsulotlar",
+    "productsDesc": "Yangi energiya avtobuslari va transport vositalari",
+    "moreProducts": "Barcha mahsulotlar →",
+    "news": "Yangiliklar",
+    "newsDesc": "So'nggi korxona yangiliklari",
+    "moreNews": "Barcha yangiliklar →"
+  },
+  "pages": {
+    "companyProfile": "Kompaniya profili",
+    "companyPatents": "Kompaniya patentlari",
+    "feedback": "Fikr-mulohaza",
+    "contact": "Aloqa",
+    "joinUs": "Bizga qo'shiling",
+    "products": "Mahsulot",
+    "news": "Yangiliklar",
+    "enterpriseNews": "Korxona yangiliklari",
+    "industryInfo": "Sanoat ma'lumotlari"
+  },
+  "about": {
+    "p1": "2017-yil mart oyida tashkil etilgan Lanzhou Guangtong New Energy Automobile Co., Ltd. (Lanzhou Guangtong) Gansu provinsiyasidagi yagona avtobus ishlab chiqarish malakasiga ega korxonadir. Lanzhou Guangtongning avlodi Gansu Tuoling avtobus zavodi hisoblanadi. Hozirda kompaniya asosan toza elektr avtobuslar, yo'l yo'lovchi avtobuslari, aeroport shuttlelari, tijorat avtomobillari, yetkazib berish avtomobillari, yirik quvvatli batareyalar va energiya saqlash mahsulotlarini ishlab chiqaradi.",
+    "p2": "Lanzhou Guangtong \"Bir kamalak, bir yo'l\" tashabbusi imkoniyatidan foydalanib, xorijiy yangi energiya avtomobillari bozorini o'rganmoqda. 2019-yilda kompaniya Belgraddagi (Serbiya) Ikarbus avtomobil zavodini sotib oldi va qayta tashkil etdi. 2018-yil oxirida kompaniya Savdo vazirligi tomonidan tasdiqlangan avtomobil eksport malakasini oldi.",
+    "p3": "Lanzhou Guangtong dunyo standartlariga mos zamonaviy avtobus ishlab chiqarish liniyasiga ega: detallar sexi, payvandlash sexi, bo'yoq sexi, shassi sexi, yig'ish sexi va butun avtomobil tekshiruv liniyalari. Yillik quvvat: 2000 ta yangi energiya avtobusi, 1000 ta avtobus shassisi va 1500 ta maxsus va logistika avtomobili.",
+    "p4": "Cambell Andijan — Lanzhou Guangtongning O'zbekistondagi rasmiy mintaqaviy hamkori va filiali sifatida Andijon viloyatida yangi energiya avtobuslari, tijorat transport vositalari, batareya va quvvatlash mahsulotlarini yetkazib berish, texnik xizmat ko'rsatish va mahalliy bozorni rivojlantirish bilan shug'ullanadi."
+  },
+  "patents": {
+    "content": "Lanzhou Guangtong va Cambell Andijan yangi energiya avtomobillari, LTO batareyalar, elektr dvigatel boshqaruvi va energiya saqlash tizimlari bo'yicha ko'plab patentlar va sertifikatlarga ega. Mahalliy filial sifatida biz xalqaro sifat standartlariga rioya qilamiz."
+  },
+  "feedback": {
+    "title": "Fikr-mulohaza",
+    "name": "Ism",
+    "email": "Elektron pochta",
+    "phone": "Telefon",
+    "message": "Xabar",
+    "submit": "Yuborish",
+    "success": "Fikr-mulohazangiz uchun rahmat!"
+  },
+  "join": {
+    "content": "Cambell Andijan jamoasiga qo'shilish uchun doimo iqtidorli mutaxassislarni qidiramiz. Rezyumengizni mirzakomilalimov02@gmail.com manziliga yuboring yoki +998 99 530 44 35 raqamiga qo'ng'iroq qiling."
+  },
+  "contact": {
+    "phoneLabel": "Telefon",
+    "emailLabel": "Elektron pochta",
+    "addressLabel": "Manzil",
+    "address": "Andijon shahri, O'zbekiston",
+    "parentCompany": "Bosh kompaniya: Lanzhou Guangtong New Energy Automobile Co., Ltd"
+  },
+  "news": {
+    "loading": "Yangiliklar yuklanmoqda...",
+    "backToList": "Yangiliklar ro'yxatiga qaytish",
+    "notFound": "Yangilik topilmadi.",
+    "sourceLink": "Rasmiy manba (lzgtnet.com)",
+    "translating": "Tarjima qilinmoqda...",
+    "article1": {
+      "title": "Transport vaziri Ilhom Makhkamov va Andijon viloyati hokimi Shukhratbek Abdurakhmanov kompaniyamiz eksport qilingan toza elektr avtobuslarida tashrif buyurdi",
+      "date": "2025/11/01",
+      "author": "Cambell Andijan",
+      "views": "5",
+      "summary": "Transport vaziri Ilhom Makhkamov va Andijon viloyati hokimi Shukhratbek Abdurakhmanov kompaniyamiz eksport qilingan toza elektr avtobuslarida tashrif buyurdi va sinovdan o'tkazdi..."
+    },
+    "article2": {
+      "title": "O'zbekiston delegatsiyasi Lanzhou shahriga tashrif buyurdi",
+      "date": "2025/03/01",
+      "author": "Cambell Andijan",
+      "views": "7",
+      "summary": "2025-yil fevral oyida O'zbekistondan davlat va jamoat transporti delegatsiyasi Lanzhou Guangtong zavodiga tashrif buyurib, hamkorlik masalalarini muhokama qildi..."
+    },
+    "article3": {
+      "title": "China Exim Bank Gansu filiali raisi Gao Zefeng Lanzhou Guangtongga tashrif buyurdi",
+      "date": "2025/01/10",
+      "author": "Cambell Andijan",
+      "views": "21",
+      "summary": "2025-yil 9-yanvar kuni China Exim Bank Gansu filiali raisi Gao Zefeng va uning jamoasi Lanzhou Guangtong New Energy zavodiga tadqiqot va yo'l-yo'riq berish uchun tashrif buyurdi..."
+    },
+    "article4": {
+      "title": "Lanzhou Guangtong Gansu delegatsiyasi bilan Yevropaga tashrif buyurdi",
+      "date": "2024/12/29",
+      "author": "Cambell Andijan",
+      "views": "32",
+      "summary": "2024-yil 18-24-noyabr kunlari Gansu provinsiyasi vakillari bilan birgalikda Yevropada muzokaralar o'tkazildi..."
+    }
+  },
+  "products": {
+    "prod1": "12m klassik avtobus",
+    "prod2": "8.5m klassik avtobus",
+    "prod3": "Klassik yo'l avtobusi",
+    "prod4": "Logistika avtomobili V5",
+    "prod5": "Koster tijorat avtomobili",
+    "prod6": "12m toza elektr shahar avtobusi",
+    "prod7": "10.5m klassik avtobus",
+    "prod8": "9.5m klassik avtobus"
+  },
+  "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" }
+}

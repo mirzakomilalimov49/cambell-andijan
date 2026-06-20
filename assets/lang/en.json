@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "siteName": "Cambell Andijan",
+    "siteNameFull": "Lanzhou Guangtong New Energy Automobile Co., Ltd — Andijan Branch",
+    "siteNameShort": "兰州广通新能源汽车有限公司",
+    "tagline": "Committed to Society, Environment, Human Beings and Future.",
+    "tagline2": "We are going along with GREEN.",
+    "description": "Cambell Andijan — official regional partner and branch of Lanzhou Guangtong New Energy Automobile in Andijan, Uzbekistan."
+  },
+  "nav": {
+    "home": "Home page",
+    "contact": "Contact",
+    "companyProfile": "Company profile",
+    "companyPatents": "Company patents",
+    "feedback": "feedback",
+    "contactLink": "Contact",
+    "product": "Prouduct",
+    "all": "全部",
+    "commercialVehicle": "Commercial Vehicle Series",
+    "bus95": "9.5m classic bus",
+    "bus18": "18m articulated vehicle",
+    "roadBus": "classic road bus",
+    "bus85": "8.5m classic bus",
+    "bus105": "10.5m classic bus",
+    "bus12": "12m classic bus",
+    "specialVehicle": "Specail Vehicle Series",
+    "coaster": "coaster commercial vehicle",
+    "batteryPack": "Battery pack",
+    "batteryProducts": "Battery products",
+    "chargingProducts": "Charging products",
+    "electricControl": "Electric control of motor",
+    "news": "News",
+    "enterpriseNews": "Enterprise News",
+    "industryInfo": "Industry information",
+    "joinUs": "Join us"
+  },
+  "footer": {
+    "serviceHotline": "Service Hotline",
+    "copyright": "Cambell Andijan — Lanzhou Guangtong New Energy Automobile Co., Ltd Andijan Branch",
+    "powered": "Cambell Andijan © 2026"
+  },
+  "carousel": { "prev": "Previous", "next": "Next" },
+  "breadcrumb": { "home": "Home page" },
+  "home": {
+    "products": "Products",
+    "productsDesc": "New energy buses and commercial vehicles",
+    "moreProducts": "All products →",
+    "news": "News",
+    "newsDesc": "Latest enterprise news",
+    "moreNews": "All news →"
+  },
+  "pages": {
+    "companyProfile": "Company profile",
+    "companyPatents": "Company patents",
+    "feedback": "feedback",
+    "contact": "Contact",
+    "joinUs": "Join us",
+    "products": "Prouduct",
+    "news": "News",
+    "enterpriseNews": "Enterprise News",
+    "industryInfo": "Industry information"
+  },
+  "about": {
+    "p1": "Founded in March 2017, Lanzhou Guangtong New Energy Automobile Co., Ltd. is the only enterprise with bus production qualification in Gansu Province. The predecessor was Gansu Tuoling Bus Factory. The company mainly produces pure electric buses, highway buses, airport shuttles, commercial vehicles, delivery vehicles, large-scale power batteries and energy storage products.",
+    "p2": "Lanzhou Guangtong actively seized the opportunity of the country's \"The Belt and Road\" initiative and explored overseas new energy vehicle markets. In 2019, it acquired and restructured the Ikarbus Automobile Factory in Belgrade, Serbia. At the end of 2018, the company obtained vehicle export qualification approved by the Ministry of Commerce.",
+    "p3": "Lanzhou Guangtong possesses a modern bus production line with world-class standards. Annual capacity: 2000 new energy buses, 1000 bus chassis, and 1500 modified vehicles and logistics vehicles.",
+    "p4": "Cambell Andijan, as the official regional partner and branch of Lanzhou Guangtong in Uzbekistan, delivers new energy buses, commercial vehicles, battery and charging products, technical support and local market development across the Andijan region."
+  },
+  "patents": {
+    "content": "Lanzhou Guangtong and Cambell Andijan hold numerous patents and certifications in new energy vehicles, LTO batteries, electric motor control and energy storage systems. As a local branch, we adhere to international quality standards."
+  },
+  "feedback": {
+    "title": "feedback",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Submit",
+    "success": "Thank you for your feedback!"
+  },
+  "join": {
+    "content": "We are always looking for talented professionals to join Cambell Andijan. Send your resume to mirzakomilalimov02@gmail.com or call +998 99 530 44 35."
+  },
+  "contact": {
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "address": "Andijan, Uzbekistan",
+    "parentCompany": "Parent Company: Lanzhou Guangtong New Energy Automobile Co., Ltd"
+  },
+  "news": {
+    "loading": "Loading news...",
+    "backToList": "Back to news list",
+    "notFound": "Article not found.",
+    "sourceLink": "Official source (lzgtnet.com)",
+    "translating": "Translating...",
+    "article1": {
+      "title": "Ilkhom Makhkamov, Minister of Transport, and Shukhratbek Abdurakhmanov, Governor of Andijan Region, visited and rode the company's exported pure electric buses",
+      "date": "2025/11/01",
+      "author": "Cambell Andijan",
+      "views": "5",
+      "summary": "Ilkhom Makhkamov, Minister of Transport, and Shukhratbek Abdurakhmanov, Governor of Andijan Region, visited and rode the company's exported pure electric buses..."
+    },
+    "article2": {
+      "title": "Uzbekistan Delegation Visits Lanzhou for Inspection and Exchange",
+      "date": "2025/03/01",
+      "author": "Cambell Andijan",
+      "views": "7",
+      "summary": "In February 2025, a government and public transport delegation from Uzbekistan visited Lanzhou Guangtong for inspection and exchange..."
+    },
+    "article3": {
+      "title": "China Exim Bank Gansu Branch President Gao Zefeng Visits Lanzhou Guangtong",
+      "date": "2025/01/10",
+      "author": "Cambell Andijan",
+      "views": "21",
+      "summary": "On January 9, 2025, Gao Zefeng, Party Committee Secretary and President of China Exim Bank Gansu Branch, visited Lanzhou Guangtong for research and guidance..."
+    },
+    "article4": {
+      "title": "Lanzhou Guangtong Accompanies Gansu Delegation on European Visit",
+      "date": "2024/12/29",
+      "author": "Cambell Andijan",
+      "views": "32",
+      "summary": "From November 18th to 24th, 2024, Lanzhou Guangtong accompanied the Gansu Provincial delegation on a European visit and negotiations..."
+    }
+  },
+  "products": {
+    "prod1": "12m classic bus",
+    "prod2": "8.5m classic bus",
+    "prod3": "classic road bus",
+    "prod4": "Logistics Vehicle V5",
+    "prod5": "coaster commercial vehicle",
+    "prod6": "12m pure electric city bus",
+    "prod7": "10.5m classic bus",
+    "prod8": "9.5m classic bus"
+  },
+  "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" }
+}

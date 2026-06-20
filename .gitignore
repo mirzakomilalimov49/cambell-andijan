@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+scripts/debug-out.json
+scripts/snippet.txt
+scripts/img-debug.json
