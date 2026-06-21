@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cambell-andijan.uz/sitemap.xml
+Sitemap: https://cambell.uz/sitemap.xml

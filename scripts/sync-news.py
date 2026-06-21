@@ -13,12 +13,18 @@ import urllib.request
 from html import unescape
 from pathlib import Path
 
+try:
+    from deep_translator import GoogleTranslator
+except ImportError:
+    GoogleTranslator = None
+
 ROOT = Path(__file__).resolve().parent.parent
 NEWS_JSON = ROOT / "assets" / "data" / "news.json"
 NEWS_IMG_DIR = ROOT / "assets" / "images" / "news"
 BASE = "https://www.lzgtnet.com"
 LIST_URL = f"{BASE}/news/news.php?class1=48&lang=en"
 UA = "Mozilla/5.0 (compatible; CambellNewsSync/1.0)"
+MAX_LIST_PAGES = 12
 
 
 def fetch(url):
@@ -48,10 +54,7 @@ def parse_paragraphs(html):
     return paras
 
 
-def translate(text, target):
-    if not text or len(text) < 2:
-        return text
-  # MyMemory limit ~500 chars per request; chunk if needed
+def translate_mymemory(text, target):
     chunks = []
     words = text.split()
     buf = []
@@ -67,13 +70,61 @@ def translate(text, target):
     for chunk in chunks:
         q = urllib.parse.quote(chunk[:500])
         url = f"https://api.mymemory.translated.net/get?q={q}&langpair=en|{target}"
-        try:
-            data = json.loads(fetch(url))
-            out.append(data.get("responseData", {}).get("translatedText", chunk))
-        except Exception:
-            out.append(chunk)
-        time.sleep(0.35)
+        for attempt in range(4):
+            try:
+                data = json.loads(fetch(url))
+                if data.get("responseStatus") == 429:
+                    time.sleep(2 ** attempt)
+                    continue
+                out.append(data.get("responseData", {}).get("translatedText", chunk))
+                break
+            except Exception:
+                if attempt == 3:
+                    out.append(chunk)
+                time.sleep(2 ** attempt)
+        time.sleep(0.6)
     return " ".join(out)
+
+
+def translate_google(text, target):
+    if not GoogleTranslator or not text or len(text.strip()) < 2:
+        return text
+    lang_map = {"uz": "uz", "ru": "ru"}
+    tl = lang_map.get(target, target)
+    max_len = 4500
+    if len(text) <= max_len:
+        for attempt in range(4):
+            try:
+                return GoogleTranslator(source="en", target=tl).translate(text)
+            except Exception:
+                time.sleep(1.5 * (attempt + 1))
+        return text
+
+    parts = []
+    buf = []
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        if len(" ".join(buf + [sentence])) > max_len and buf:
+            parts.append(" ".join(buf))
+            buf = [sentence]
+        else:
+            buf.append(sentence)
+    if buf:
+        parts.append(" ".join(buf))
+
+    translated = []
+    for part in parts:
+        translated.append(translate_google(part, target))
+        time.sleep(0.4)
+    return " ".join(translated)
+
+
+def translate(text, target):
+    if not text or len(text) < 2:
+        return text
+    result = translate_google(text, target)
+    if result.strip() == text.strip() or not result.strip():
+        result = translate_mymemory(text, target)
+    return result
 
 
 def translate_paragraphs(paras, target):
@@ -92,18 +143,44 @@ def resolve_image_url(src):
     return urllib.parse.urljoin(BASE + "/news/", src)
 
 
+def fetch_list_page(page=1):
+    sep = "&" if "?" in LIST_URL else "?"
+    url = LIST_URL if page <= 1 else f"{LIST_URL}{sep}page={page}"
+    return fetch(url)
+
+
+def fetch_all_article_ids():
+    ids = set()
+    for page in range(1, MAX_LIST_PAGES + 1):
+        html = fetch_list_page(page)
+        found = set(re.findall(r"shownews\.php\?id=(\d+)", html))
+        if not found:
+            break
+        before = len(ids)
+        ids.update(found)
+        if len(ids) == before:
+            break
+    return sorted(ids, key=int, reverse=True)
+
+
 def fetch_list_thumbnails():
-    html = fetch(LIST_URL)
     thumbs = {}
-    for m in re.finditer(
-        r'<a[^>]+href=["\'][^"\']*shownews\.php\?id=(\d+)[^"\']*["\'][^>]*>(.*?)</a>',
-        html,
-        re.S | re.I,
-    ):
-        aid, inner = m.group(1), m.group(2)
-        img = re.search(r'src=["\']([^"\']+)["\']', inner, re.I)
-        if img:
-            thumbs[aid] = resolve_image_url(img.group(1))
+    for page in range(1, MAX_LIST_PAGES + 1):
+        html = fetch_list_page(page)
+        found = set(re.findall(r"shownews\.php\?id=(\d+)", html))
+        if not found:
+            break
+        for m in re.finditer(
+            r'<a[^>]+href=["\'][^"\']*shownews\.php\?id=(\d+)[^"\']*["\'][^>]*>(.*?)</a>',
+            html,
+            re.S | re.I,
+        ):
+            aid, inner = m.group(1), m.group(2)
+            img = re.search(r'src=["\']([^"\']+)["\']', inner, re.I)
+            if img and aid not in thumbs:
+                thumbs[aid] = resolve_image_url(img.group(1))
+        if page > 1 and not any(aid not in thumbs for aid in found):
+            pass
     return thumbs
 
 
@@ -228,9 +305,11 @@ def needs_translation(old_article, parsed_en, lang):
         return True
     if len(loc.get("body", [])) != len(en.get("body", [])):
         return True
-    if loc.get("title") == en.get("title") and len(en.get("title", "")) > 15:
+    if loc.get("title") == en.get("title") and len(en.get("title", "")) > 10:
         return True
-    if loc.get("summary") == en.get("summary") and len(en.get("summary", "")) > 30:
+    if loc.get("summary") == en.get("summary") and len(en.get("summary", "")) > 20:
+        return True
+    if loc.get("body") and en.get("body") and loc["body"][0] == en["body"][0]:
         return True
     return False
 
@@ -287,9 +366,8 @@ def main():
     NEWS_IMG_DIR.mkdir(parents=True, exist_ok=True)
     NEWS_JSON.parent.mkdir(parents=True, exist_ok=True)
 
-    print("Fetching news list...")
-    list_html = fetch(LIST_URL)
-    ids = sorted(set(re.findall(r"shownews\.php\?id=(\d+)", list_html)), key=int, reverse=True)
+    print("Fetching news list (all pages)...")
+    ids = fetch_all_article_ids()
     thumbs = fetch_list_thumbnails()
     print(f"Found {len(ids)} articles: {ids}")
 
@@ -323,7 +401,7 @@ def main():
 
 def update_sitemap(articles):
     sitemap = ROOT / "sitemap.xml"
-    base = "https://cambell-andijan.uz"
+    base = "https://cambell.uz"
     static_pages = [
         ("", "1.0"),
         ("about.html", "0.8"),

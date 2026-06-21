@@ -205,7 +205,10 @@ const CambellNews = (function () {
     await loadNews();
     refresh();
 
-    autoTranslateArticles(['uz', 'ru']);
+    const needsAuto = (newsData?.articles || []).some(
+      (a) => CambellTranslate.needsTranslation(a, 'uz') || CambellTranslate.needsTranslation(a, 'ru')
+    );
+    if (needsAuto) autoTranslateArticles(['uz', 'ru']);
 
     document.addEventListener('languageChanged', async (e) => {
       lang = e.detail?.lang || getLang();
