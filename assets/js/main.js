@@ -11,28 +11,55 @@ function initMobileNav() {
   const collapse = document.getElementById('met-nav-collapse');
   if (!toggler || !collapse) return;
 
-  toggler.addEventListener('click', () => {
+  toggler.addEventListener('click', (e) => {
+    e.stopPropagation();
     collapse.classList.toggle('show');
+    toggler.classList.toggle('active');
   });
 
   document.addEventListener('click', (e) => {
     if (!collapse.contains(e.target) && !toggler.contains(e.target)) {
       collapse.classList.remove('show');
+      toggler.classList.remove('active');
     }
+  });
+
+  collapse.querySelectorAll('a').forEach((link) => {
+    if (link.classList.contains('dropdown-toggle')) return;
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 992) {
+        collapse.classList.remove('show');
+        toggler.classList.remove('active');
+        document.querySelectorAll('.nav-item.dropdown.open, .dropdown-submenu.open').forEach((el) => {
+          el.classList.remove('open');
+        });
+      }
+    });
   });
 }
 
 function initDropdowns() {
-  if (window.innerWidth >= 992) return;
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth >= 992) return;
 
-  document.querySelectorAll('.nav-item.dropdown > .nav-link').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      if (window.innerWidth < 992) {
-        e.preventDefault();
-        const parent = link.parentElement;
-        parent.classList.toggle('open');
-      }
-    });
+    const subToggle = e.target.closest('.dropdown-submenu > .dropdown-item');
+    if (subToggle) {
+      e.preventDefault();
+      const parent = subToggle.parentElement;
+      parent.classList.toggle('open');
+      return;
+    }
+
+    const dropToggle = e.target.closest('.nav-item.dropdown > .nav-link.dropdown-toggle');
+    if (dropToggle) {
+      e.preventDefault();
+      const parent = dropToggle.parentElement;
+      const siblings = parent.parentElement.querySelectorAll('.nav-item.dropdown.open');
+      siblings.forEach((el) => {
+        if (el !== parent) el.classList.remove('open');
+      });
+      parent.classList.toggle('open');
+    }
   });
 }
 

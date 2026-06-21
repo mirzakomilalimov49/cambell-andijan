@@ -283,13 +283,21 @@
 
 @media (max-width: 480px) {
   #cambell-chatbot {
-    bottom: 16px;
-    right: 16px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right));
   }
 
   .chat-panel {
-    width: calc(100vw - 32px);
-    height: calc(100vh - 100px);
-    bottom: 72px;
+    width: calc(100vw - 24px);
+    height: min(520px, calc(100dvh - 90px));
+    bottom: 68px;
+    right: 0;
+    border-radius: 12px;
+  }
+
+  .chat-toggle {
+    width: 54px;
+    height: 54px;
+    font-size: 22px;
   }
 }
