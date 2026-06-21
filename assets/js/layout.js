@@ -35,6 +35,7 @@ function setActiveNav(page) {
     feedback: 'contact',
     contact: 'contact',
     product: 'product',
+    'product-detail': 'product',
     news: 'news',
     'news-detail': 'news',
     join: 'join'

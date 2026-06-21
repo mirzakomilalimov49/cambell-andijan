@@ -1,0 +1,401 @@
+{
+  "updatedAt": "2026-06-21",
+  "products": [
+    {
+      "id": "prod-12m",
+      "image": "assets/images/products/prod-12m.jpg",
+      "featured": true,
+      "uz": {
+        "title": "12m klassik avtobus",
+        "summary": "Shahar va shahar atrofi yo'nalishlari uchun zamonaviy 12 metrli klassik avtobus.",
+        "description": [
+          "Lanzhou Guangtong 12 metrli klassik avtobusi shahar ichidagi va shahar atrofidagi yo'nalishlar uchun mo'ljallangan. Yuqori o'tirish qulayligi, keng yo'lovchi salon va ishonchli dvigatel tizimi bilan ajralib turadi.",
+          "Avtobus yirik shaharlar, aeroport yo'nalishlari va uzoq masofali shahar ichi marshrutlari uchun mos. Cambell Andijan O'zbekiston bozorida texnik xizmat va ehtiyot qismlar ta'minoti bilan ta'minlaydi."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "12 000 mm" },
+          { "label": "O'tirish joylari", "value": "35–45" },
+          { "label": "Yoqilg'i turi", "value": "Dizel / CNG (ixtiyoriy)" },
+          { "label": "Emissiya", "value": "Euro V / VI" },
+          { "label": "Qo'llanilish", "value": "Shahar va shahar atrofi" }
+        ]
+      },
+      "ru": {
+        "title": "Классический автобус 12м",
+        "summary": "Современный 12-метровый классический автобус для городских и пригородных маршрутов.",
+        "description": [
+          "12-метровый классический автобус Lanzhou Guangtong предназначен для городских и пригородных линий. Отличается высоким комфортом пассажиров, просторным салоном и надёжной силовой установкой.",
+          "Подходит для крупных городов, аэропортовых маршрутов и длинных городских линий. Cambell Andijan обеспечивает техническое обслуживание и поставку запчастей на рынке Узбекистана."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "12 000 мм" },
+          { "label": "Места", "value": "35–45" },
+          { "label": "Топливо", "value": "Дизель / CNG (опция)" },
+          { "label": "Эмиссия", "value": "Euro V / VI" },
+          { "label": "Применение", "value": "Город и пригород" }
+        ]
+      },
+      "en": {
+        "title": "12m classic bus",
+        "summary": "Modern 12-meter classic bus for urban and suburban routes.",
+        "description": [
+          "The Lanzhou Guangtong 12m classic bus is designed for urban and suburban lines. It offers high passenger comfort, a spacious interior and a reliable powertrain.",
+          "Suitable for major cities, airport shuttles and long urban routes. Cambell Andijan provides technical support and spare parts supply in Uzbekistan."
+        ],
+        "specs": [
+          { "label": "Length", "value": "12,000 mm" },
+          { "label": "Seats", "value": "35–45" },
+          { "label": "Fuel", "value": "Diesel / CNG (optional)" },
+          { "label": "Emission", "value": "Euro V / VI" },
+          { "label": "Application", "value": "Urban & suburban" }
+        ]
+      }
+    },
+    {
+      "id": "prod-85m",
+      "image": "assets/images/products/prod-85m.jpg",
+      "uz": {
+        "title": "8.5m klassik avtobus",
+        "summary": "Tor ko'chalar va qisqa marshrutlar uchun ixcham 8.5 metrli avtobus.",
+        "description": [
+          "8.5 metrli klassik avtobus tor shahar ko'chalari va qisqa masofali yo'nalishlar uchun ideal yechim. Kam aylanma radiusi va yuqori manevrchanlik bilan ajralib turadi.",
+          "Kichik va o'rta shaharlar, mahalla marshrutlari hamda xususiy tashuvchilar uchun qulay variant."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "8 500 mm" },
+          { "label": "O'tirish joylari", "value": "20–28" },
+          { "label": "Yoqilg'i turi", "value": "Dizel" },
+          { "label": "Emissiya", "value": "Euro V" },
+          { "label": "Qo'llanilish", "value": "Shahar ichki yo'nalishlar" }
+        ]
+      },
+      "ru": {
+        "title": "Классический автобус 8.5м",
+        "summary": "Компактный 8.5-метровый автобус для узких улиц и коротких маршрутов.",
+        "description": [
+          "8.5-метровый классический автобус — идеальное решение для узких городских улиц и коротких маршрутов. Отличается малым радиусом разворота и высокой манёвренностью.",
+          "Удобный вариант для малых и средних городов, микрорайонных маршрутов и частных перевозчиков."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "8 500 мм" },
+          { "label": "Места", "value": "20–28" },
+          { "label": "Топливо", "value": "Дизель" },
+          { "label": "Эмиссия", "value": "Euro V" },
+          { "label": "Применение", "value": "Городские линии" }
+        ]
+      },
+      "en": {
+        "title": "8.5m classic bus",
+        "summary": "Compact 8.5-meter bus for narrow streets and short routes.",
+        "description": [
+          "The 8.5m classic bus is ideal for narrow urban streets and short-distance routes, with a small turning radius and high maneuverability.",
+          "A practical choice for small and medium cities, neighborhood routes and private operators."
+        ],
+        "specs": [
+          { "label": "Length", "value": "8,500 mm" },
+          { "label": "Seats", "value": "20–28" },
+          { "label": "Fuel", "value": "Diesel" },
+          { "label": "Emission", "value": "Euro V" },
+          { "label": "Application", "value": "Urban lines" }
+        ]
+      }
+    },
+    {
+      "id": "prod-road",
+      "image": "assets/images/products/prod-road.jpg",
+      "uz": {
+        "title": "Klassik yo'l avtobusi",
+        "summary": "Shaharlararo va uzoq masofali yo'nalishlar uchun qulay yo'l avtobusi.",
+        "description": [
+          "Klassik yo'l avtobusi shaharlararo va mintaqaviy yo'nalishlar uchun mo'ljallangan. Keng o'tirish joylari, konditsioner va yukxonasi bilan uzoq safarlarda qulaylik ta'minlaydi.",
+          "Turizm, korporativ tashish va shaharlararo yo'lovchi tashuvi uchun professional yechim."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "10–12 m" },
+          { "label": "O'tirish joylari", "value": "40–53" },
+          { "label": "Yoqilg'i turi", "value": "Dizel" },
+          { "label": "Qulaylik", "value": "Konditsioner, USB, Wi-Fi (ixtiyoriy)" },
+          { "label": "Qo'llanilish", "value": "Shaharlararo yo'nalishlar" }
+        ]
+      },
+      "ru": {
+        "title": "Классический междугородний автобус",
+        "summary": "Междугородный автобус для комфортных дальних маршрутов.",
+        "description": [
+          "Классический междугородный автобус предназначен для региональных и междугородных линий. Просторные сиденья, кондиционер и багажное отделение обеспечивают комфорт в дальних поездках.",
+          "Профессиональное решение для туризма, корпоративных перевозок и междугородного пассажирского сообщения."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "10–12 м" },
+          { "label": "Места", "value": "40–53" },
+          { "label": "Топливо", "value": "Дизель" },
+          { "label": "Комфорт", "value": "Кондиционер, USB, Wi-Fi (опция)" },
+          { "label": "Применение", "value": "Междугородние маршруты" }
+        ]
+      },
+      "en": {
+        "title": "classic road bus",
+        "summary": "Intercity coach for comfortable long-distance routes.",
+        "description": [
+          "The classic road bus is built for intercity and regional routes. Spacious seats, air conditioning and luggage compartments ensure comfort on long journeys.",
+          "A professional solution for tourism, corporate transport and intercity passenger service."
+        ],
+        "specs": [
+          { "label": "Length", "value": "10–12 m" },
+          { "label": "Seats", "value": "40–53" },
+          { "label": "Fuel", "value": "Diesel" },
+          { "label": "Comfort", "value": "A/C, USB, Wi-Fi (optional)" },
+          { "label": "Application", "value": "Intercity routes" }
+        ]
+      }
+    },
+    {
+      "id": "prod-logistics",
+      "image": "assets/images/products/prod-logistics.jpg",
+      "uz": {
+        "title": "Logistika avtomobili V5",
+        "summary": "Yuk tashish va logistika uchun zamonaviy V5 seriyasi.",
+        "description": [
+          "Logistika avtomobili V5 yuk tashish, yetkazib berish va tijorat logistikasi uchun mo'ljallangan. Keng yukxonasi, mustahkam shassi va past ekspluatatsiya xarajatlari bilan ajralib turadi.",
+          "E-commerce, oziq-ovqat yetkazib berish va sanoat logistikasi uchun samarali yechim."
+        ],
+        "specs": [
+          { "label": "Yuk hajmi", "value": "5–8 m³ (modelga qarab)" },
+          { "label": "Yuk ko'tarish", "value": "1.5–3.5 tonna" },
+          { "label": "Yoqilg'i turi", "value": "Dizel / Elektr (ixtiyoriy)" },
+          { "label": "Uzunlik", "value": "5.5–6.5 m" },
+          { "label": "Qo'llanilish", "value": "Shahar logistikasi" }
+        ]
+      },
+      "ru": {
+        "title": "Логистический автомобиль V5",
+        "summary": "Современный автомобиль серии V5 для грузоперевозок и логистики.",
+        "description": [
+          "Логистический автомобиль V5 предназначен для грузоперевозок, доставки и коммерческой логистики. Отличается вместительным кузовом, прочной рамой и низкими эксплуатационными расходами.",
+          "Эффективное решение для e-commerce, доставки продуктов и промышленной логистики."
+        ],
+        "specs": [
+          { "label": "Объём кузова", "value": "5–8 м³ (в зависимости от модели)" },
+          { "label": "Грузоподъёмность", "value": "1.5–3.5 тонны" },
+          { "label": "Топливо", "value": "Дизель / Электро (опция)" },
+          { "label": "Длина", "value": "5.5–6.5 м" },
+          { "label": "Применение", "value": "Городская логистика" }
+        ]
+      },
+      "en": {
+        "title": "Logistics Vehicle V5",
+        "summary": "Modern V5 series vehicle for freight and logistics.",
+        "description": [
+          "The Logistics Vehicle V5 is designed for freight transport, delivery and commercial logistics. It features a spacious cargo area, robust chassis and low operating costs.",
+          "An efficient solution for e-commerce, food delivery and industrial logistics."
+        ],
+        "specs": [
+          { "label": "Cargo volume", "value": "5–8 m³ (model dependent)" },
+          { "label": "Payload", "value": "1.5–3.5 tonnes" },
+          { "label": "Fuel", "value": "Diesel / Electric (optional)" },
+          { "label": "Length", "value": "5.5–6.5 m" },
+          { "label": "Application", "value": "Urban logistics" }
+        ]
+      }
+    },
+    {
+      "id": "prod-coaster",
+      "image": "assets/images/products/prod-coaster.jpg",
+      "featured": true,
+      "uz": {
+        "title": "Koster tijorat avtomobili",
+        "summary": "Guruh tashish va korporativ xizmat uchun koster mikroavtobus.",
+        "description": [
+          "Koster tijorat avtomobili mehmonxona, aeroport, korporativ va turistik guruh tashish uchun mo'ljallangan. Qulay salon, ishonchli dvigatel va past xarajat bilan ajralib turadi.",
+          "Xususiy tashuvchilar, mehmonxonalar va tur operatorlari uchun ideal tanlov."
+        ],
+        "specs": [
+          { "label": "O'tirish joylari", "value": "15–23" },
+          { "label": "Uzunlik", "value": "6–7 m" },
+          { "label": "Yoqilg'i turi", "value": "Dizel / Benzin" },
+          { "label": "Eshiklar", "value": "Yon eshik + orqa eshik" },
+          { "label": "Qo'llanilish", "value": "Guruh tashish" }
+        ]
+      },
+      "ru": {
+        "title": "Коммерческий микроавтобус",
+        "summary": "Микроавтобус для групповых и корпоративных перевозок.",
+        "description": [
+          "Коммерческий микроавтобус предназначен для отелей, аэропортов, корпоративных и туристических групповых перевозок. Отличается комфортным салоном, надёжным двигателем и низкими расходами.",
+          "Идеальный выбор для частных перевозчиков, отелей и туроператоров."
+        ],
+        "specs": [
+          { "label": "Места", "value": "15–23" },
+          { "label": "Длина", "value": "6–7 м" },
+          { "label": "Топливо", "value": "Дизель / Бензин" },
+          { "label": "Двери", "value": "Боковая + задняя" },
+          { "label": "Применение", "value": "Групповые перевозки" }
+        ]
+      },
+      "en": {
+        "title": "coaster commercial vehicle",
+        "summary": "Coaster minibus for group and corporate transport.",
+        "description": [
+          "The coaster commercial vehicle is designed for hotels, airports, corporate and tourist group transport. It offers a comfortable cabin, reliable engine and low operating costs.",
+          "An ideal choice for private operators, hotels and tour companies."
+        ],
+        "specs": [
+          { "label": "Seats", "value": "15–23" },
+          { "label": "Length", "value": "6–7 m" },
+          { "label": "Fuel", "value": "Diesel / Petrol" },
+          { "label": "Doors", "value": "Side + rear" },
+          { "label": "Application", "value": "Group transport" }
+        ]
+      }
+    },
+    {
+      "id": "prod-electric",
+      "image": "assets/images/products/prod-electric.jpg",
+      "featured": true,
+      "uz": {
+        "title": "12m toza elektr shahar avtobusi",
+        "summary": "LTO batareyali toza elektr shahar avtobusi — nol emissiya.",
+        "description": [
+          "12 metrli toza elektr shahar avtobusi Lanzhou Guangtong ning flagman mahsulotlaridan biri. LTO (lithium titanate) batareya texnologiyasi tez quvvatlash va uzoq xizmat muddatini ta'minlaydi.",
+          "Yevropa va O'zbekiston bozorlarida muvaffaqiyatli sinovdan o'tgan. Shahar jamoat transporti uchun ekologik va iqtisodiy yechim. Cambell Andijan mahalliy texnik qo'llab-quvvatlash va servis xizmatini taqdim etadi."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "12 000 mm" },
+          { "label": "Batareya", "value": "LTO litiy-titanat" },
+          { "label": "Quvvatlash", "value": "Tez quvvatlash 10–15 daqiqa" },
+          { "label": "Masofa", "value": "200+ km (bir quvvatlash)" },
+          { "label": "Emissiya", "value": "Nol (toza elektr)" }
+        ]
+      },
+      "ru": {
+        "title": "12м чисто электрический городской автобус",
+        "summary": "Электрический городской автобус с LTO-батареей — нулевые выбросы.",
+        "description": [
+          "12-метровый чисто электрический городской автобус — один из флагманских продуктов Lanzhou Guangtong. Технология LTO (литий-титанатные батареи) обеспечивает быструю зарядку и длительный срок службы.",
+          "Успешно прошёл испытания на рынках Европы и Узбекистана. Экологичное и экономичное решение для городского транспорта. Cambell Andijan обеспечивает локальную техническую поддержку и сервис."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "12 000 мм" },
+          { "label": "Батарея", "value": "LTO литий-титанат" },
+          { "label": "Зарядка", "value": "Быстрая 10–15 минут" },
+          { "label": "Запас хода", "value": "200+ км" },
+          { "label": "Эмиссия", "value": "Ноль (чистая энергия)" }
+        ]
+      },
+      "en": {
+        "title": "12m pure electric city bus",
+        "summary": "LTO battery pure electric city bus — zero emissions.",
+        "description": [
+          "The 12m pure electric city bus is one of Lanzhou Guangtong's flagship products. LTO (lithium titanate) battery technology enables fast charging and a long service life.",
+          "Successfully tested in European and Uzbekistan markets. An eco-friendly and economical solution for urban public transport. Cambell Andijan provides local technical support and service."
+        ],
+        "specs": [
+          { "label": "Length", "value": "12,000 mm" },
+          { "label": "Battery", "value": "LTO lithium titanate" },
+          { "label": "Charging", "value": "Fast charge 10–15 min" },
+          { "label": "Range", "value": "200+ km per charge" },
+          { "label": "Emission", "value": "Zero (clean energy)" }
+        ]
+      }
+    },
+    {
+      "id": "prod-105m",
+      "image": "assets/images/products/prod-105m.jpg",
+      "featured": true,
+      "uz": {
+        "title": "10.5m klassik avtobus",
+        "summary": "O'rta hajmli shahar yo'nalishlari uchun 10.5 metrli avtobus.",
+        "description": [
+          "10.5 metrli klassik avtobus o'rta va yirik shaharlar uchun optimal o'lcham. Yuqori yo'lovchi sig'imi va manevrchanlik muvozanati bilan ajralib turadi.",
+          "Jamoat transporti operatorlari va shahar hokimiyatlari uchun ishonchli tanlov."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "10 500 mm" },
+          { "label": "O'tirish joylari", "value": "30–38" },
+          { "label": "Yoqilg'i turi", "value": "Dizel / CNG" },
+          { "label": "Emissiya", "value": "Euro V / VI" },
+          { "label": "Qo'llanilish", "value": "Shahar yo'nalishlari" }
+        ]
+      },
+      "ru": {
+        "title": "Классический автобус 10.5м",
+        "summary": "10.5-метровый автобус для средних городских маршрутов.",
+        "description": [
+          "10.5-метровый классический автобус — оптимальный размер для средних и крупных городов. Сочетает вместимость и манёвренность.",
+          "Надёжный выбор для операторов общественного транспорта и городских администраций."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "10 500 мм" },
+          { "label": "Места", "value": "30–38" },
+          { "label": "Топливо", "value": "Дизель / CNG" },
+          { "label": "Эмиссия", "value": "Euro V / VI" },
+          { "label": "Применение", "value": "Городские маршруты" }
+        ]
+      },
+      "en": {
+        "title": "10.5m classic bus",
+        "summary": "10.5-meter bus for medium urban routes.",
+        "description": [
+          "The 10.5m classic bus is the optimal size for medium and large cities, balancing passenger capacity and maneuverability.",
+          "A reliable choice for public transport operators and city authorities."
+        ],
+        "specs": [
+          { "label": "Length", "value": "10,500 mm" },
+          { "label": "Seats", "value": "30–38" },
+          { "label": "Fuel", "value": "Diesel / CNG" },
+          { "label": "Emission", "value": "Euro V / VI" },
+          { "label": "Application", "value": "Urban routes" }
+        ]
+      }
+    },
+    {
+      "id": "prod-95m",
+      "image": "assets/images/products/prod-95m.jpg",
+      "uz": {
+        "title": "9.5m klassik avtobus",
+        "summary": "O'rta hajmli shahar marshrutlari uchun 9.5 metrli avtobus.",
+        "description": [
+          "9.5 metrli klassik avtobus shahar ichidagi asosiy yo'nalishlar uchun mo'ljallangan. Iqtisodiy yoqilg'i sarfini va past ta'mirlash xarajatlarini ta'minlaydi.",
+          "Kichik va o'rta shaharlar jamoat transporti tizimini yangilash uchun mos mahsulot."
+        ],
+        "specs": [
+          { "label": "Uzunlik", "value": "9 500 mm" },
+          { "label": "O'tirish joylari", "value": "25–32" },
+          { "label": "Yoqilg'i turi", "value": "Dizel" },
+          { "label": "Emissiya", "value": "Euro V" },
+          { "label": "Qo'llanilish", "value": "Shahar yo'nalishlari" }
+        ]
+      },
+      "ru": {
+        "title": "Классический автобус 9.5м",
+        "summary": "9.5-метровый автобус для городских маршрутов средней протяжённости.",
+        "description": [
+          "9.5-метровый классический автобус предназначен для основных городских линий. Обеспечивает экономичный расход топлива и низкие затраты на обслуживание.",
+          "Подходит для модернизации систем общественного транспорта в малых и средних городах."
+        ],
+        "specs": [
+          { "label": "Длина", "value": "9 500 мм" },
+          { "label": "Места", "value": "25–32" },
+          { "label": "Топливо", "value": "Дизель" },
+          { "label": "Эмиссия", "value": "Euro V" },
+          { "label": "Применение", "value": "Городские маршруты" }
+        ]
+      },
+      "en": {
+        "title": "9.5m classic bus",
+        "summary": "9.5-meter bus for medium-length urban routes.",
+        "description": [
+          "The 9.5m classic bus is designed for main urban lines, offering economical fuel consumption and low maintenance costs.",
+          "Suitable for upgrading public transport systems in small and medium cities."
+        ],
+        "specs": [
+          { "label": "Length", "value": "9,500 mm" },
+          { "label": "Seats", "value": "25–32" },
+          { "label": "Fuel", "value": "Diesel" },
+          { "label": "Emission", "value": "Euro V" },
+          { "label": "Application", "value": "Urban routes" }
+        ]
+      }
+    }
+  ]
+}

@@ -133,5 +133,13 @@
     "prod7": "10.5m classic bus",
     "prod8": "9.5m classic bus"
   },
+  "productsPage": {
+    "loading": "Loading products...",
+    "notFound": "Product not found.",
+    "backToList": "Back to products",
+    "specs": "Technical specifications",
+    "contact": "Contact us for pricing and delivery information.",
+    "contactBtn": "Contact us"
+  },
   "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" }
 }

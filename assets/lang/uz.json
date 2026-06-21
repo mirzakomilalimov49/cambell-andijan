@@ -133,5 +133,13 @@
     "prod7": "10.5m klassik avtobus",
     "prod8": "9.5m klassik avtobus"
   },
+  "productsPage": {
+    "loading": "Mahsulotlar yuklanmoqda...",
+    "notFound": "Mahsulot topilmadi.",
+    "backToList": "Mahsulotlar ro'yxatiga qaytish",
+    "specs": "Texnik xususiyatlar",
+    "contact": "Narx va yetkazib berish haqida ma'lumot olish uchun biz bilan bog'laning.",
+    "contactBtn": "Bog'lanish"
+  },
   "lang": { "uz": "O'zbekcha", "ru": "Русский", "en": "English" }
 }

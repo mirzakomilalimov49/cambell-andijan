@@ -59,6 +59,7 @@ const I18n = (function () {
       feedback: getNestedValue(translations, 'pages.feedback'),
       contact: getNestedValue(translations, 'pages.contact'),
       product: getNestedValue(translations, 'pages.products'),
+      'product-detail': getNestedValue(translations, 'pages.products'),
       news: getNestedValue(translations, 'pages.news'),
       'news-detail': getNestedValue(translations, 'pages.news'),
       join: getNestedValue(translations, 'pages.joinUs')
