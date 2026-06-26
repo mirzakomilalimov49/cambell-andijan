@@ -32,7 +32,8 @@
     "news": "News",
     "enterpriseNews": "Enterprise News",
     "industryInfo": "Industry information",
-    "joinUs": "Join us"
+    "joinUs": "Join us",
+    "monitoring": "Monitoring"
   },
   "footer": {
     "serviceHotline": "Service Hotline",
@@ -58,7 +59,8 @@
     "products": "Prouduct",
     "news": "News",
     "enterpriseNews": "Enterprise News",
-    "industryInfo": "Industry information"
+    "industryInfo": "Industry information",
+    "monitoring": "Factory Monitoring"
   },
   "about": {
     "p1": "Founded in March 2017, Lanzhou Guangtong New Energy Automobile Co., Ltd. is the only enterprise with bus production qualification in Gansu Province. The predecessor was Gansu Tuoling Bus Factory. The company mainly produces pure electric buses, highway buses, airport shuttles, commercial vehicles, delivery vehicles, large-scale power batteries and energy storage products.",

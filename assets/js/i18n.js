@@ -62,7 +62,8 @@ const I18n = (function () {
       'product-detail': getNestedValue(translations, 'pages.products'),
       news: getNestedValue(translations, 'pages.news'),
       'news-detail': getNestedValue(translations, 'pages.news'),
-      join: getNestedValue(translations, 'pages.joinUs')
+      join: getNestedValue(translations, 'pages.joinUs'),
+      monitoring: getNestedValue(translations, 'pages.monitoring')
     };
     return page === 'home' ? `${site}` : `${titles[page] || page} - ${site}`;
   }

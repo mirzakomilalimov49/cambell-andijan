@@ -38,7 +38,8 @@ function setActiveNav(page) {
     'product-detail': 'product',
     news: 'news',
     'news-detail': 'news',
-    join: 'join'
+    join: 'join',
+    monitoring: 'monitoring'
   };
   const active = map[page] || page;
   document.querySelectorAll('[data-nav]').forEach((el) => {

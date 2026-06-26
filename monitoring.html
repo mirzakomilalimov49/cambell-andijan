@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ishlab chiqarish monitoringi — Cambell Andijan</title>
+  <meta name="description" content="Andijon avtobus zavodi jonli monitoring tizimi — robotic ishlab chiqarish va buyurtmalar tranziti real vaqtda.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/chatbot.css">
+
+  <!-- Tailwind: disable preflight so it doesn't break cambell's own CSS -->
+  <script>window.tailwind = { config: { corePlugins: { preflight: false } } };</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React 18 UMD – dev build for better error messages -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- lucide-react UMD expects global.react (lowercase) -->
+  <script>window.react = window.React;</script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.469.0/dist/umd/lucide-react.js" crossorigin></script>
+
+  <!-- Babel standalone -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    #monitoring-root { min-height: 60vh; background: #f8fafc; }
+    #monitoring-root * { box-sizing: border-box; }
+    .mon-error { color: red; font-family: monospace; padding: 20px; background:#fff3f3; border:1px solid #fcc; border-radius:4px; margin:20px; }
+  </style>
+</head>
+<body data-page="monitoring">
+
+<div id="site-header"></div>
+
+<div class="met-breadcrumb">
+  <div class="container">
+    <span><a href="index.html" data-i18n="breadcrumb.home">Bosh sahifa</a></span>
+    <span class="sep"> / </span>
+    <span data-i18n="nav.monitoring">Monitoring</span>
+  </div>
+</div>
+
+<!-- Global error catcher -->
+<script>
+window.addEventListener('error', function(e) {
+  var el = document.getElementById('monitoring-root');
+  if (el) el.innerHTML = '<div style="color:red;font-family:monospace;padding:20px;background:#fff0f0;border:1px solid #fcc;border-radius:6px;margin:20px">JS XATO: ' + e.message + '<br>Fayl: ' + (e.filename||'').split('/').pop() + ':' + e.lineno + '</div>';
+});
+window.addEventListener('unhandledrejection', function(e) {
+  var el = document.getElementById('monitoring-root');
+  if (el) el.innerHTML = '<div style="color:red;font-family:monospace;padding:20px;background:#fff0f0;border:1px solid #fcc;border-radius:6px;margin:20px">Promise XATO: ' + e.reason + '</div>';
+});
+</script>
+
+<div id="mon-diag" style="font-family:monospace;font-size:12px;padding:8px 16px;background:#1e293b;color:#94a3b8;display:flex;gap:16px;flex-wrap:wrap;border-bottom:1px solid #334155">
+  <span id="d-react">React: ...</span>
+  <span id="d-rdom">ReactDOM: ...</span>
+  <span id="d-babel">Babel: ...</span>
+  <span id="d-lucide">Lucide: ...</span>
+  <span id="d-status" style="margin-left:auto;color:#fbbf24"></span>
+</div>
+<script>
+(function checkDeps() {
+  function ok(id, label) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = label + ': OK'; el.style.color = '#4ade80'; }
+  }
+  function fail(id, label) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = label + ': YUKLANMADI'; el.style.color = '#f87171'; }
+  }
+  if (window.React)      ok('d-react', 'React');   else fail('d-react', 'React');
+  if (window.ReactDOM)   ok('d-rdom', 'ReactDOM'); else fail('d-rdom', 'ReactDOM');
+  if (window.Babel)      ok('d-babel', 'Babel');   else fail('d-babel', 'Babel');
+  if (window.LucideReact || window.lucideReact) ok('d-lucide', 'Lucide'); else fail('d-lucide', 'Lucide');
+  var all = window.React && window.ReactDOM && window.Babel;
+  var stat = document.getElementById('d-status');
+  if (stat) stat.textContent = all ? '✓ Barcha kutubxonalar yuklandi' : '✗ Ba\'zi kutubxonalar yuklanmadi (internet?)';
+})();
+</script>
+
+<div id="monitoring-root">
+  <p style="padding:60px;text-align:center;color:#64748b;font-family:Arial">Monitoring yuklanmoqda...</p>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/translate.js"></script>
+<script src="assets/js/chatbot.js"></script>
+
+<!-- ============================================================
+     MONITORING REACT APP  (plain JSX, no TypeScript types)
+     ============================================================ -->
+<script type="text/jsx-source" id="mon-jsx">
+(function() {
+  'use strict';
+
+  const { useState, useEffect } = React;
+
+  /* Lucide icons — UMD global is LucideReact */
+  const Icons = window.LucideReact || {};
+  const Cpu        = Icons.Cpu        || function() { return null; };
+  const Activity   = Icons.Activity   || function() { return null; };
+  const Layers     = Icons.Layers     || function() { return null; };
+  const CheckCircle= Icons.CheckCircle|| function() { return null; };
+  const Play       = Icons.Play       || function() { return null; };
+  const Pause      = Icons.Pause      || function() { return null; };
+  const Compass    = Icons.Compass    || function() { return null; };
+  const ChevronRight=Icons.ChevronRight||function() { return null; };
+  const FileText   = Icons.FileText   || function() { return null; };
+  const Search     = Icons.Search     || function() { return null; };
+  const Sliders    = Icons.Sliders    || function() { return null; };
+  const ShieldAlert= Icons.ShieldAlert|| function() { return null; };
+  const Download   = Icons.Download   || function() { return null; };
+
+  /* ---------------------------------------------------------- */
+  /* STEP VISUAL SCHEMATIC                                       */
+  /* ---------------------------------------------------------- */
+  function StepVisualSchematic({ stepId, currentLang }) {
+    const [pulse, setPulse] = useState(true);
+    useEffect(() => {
+      const t = setInterval(() => setPulse(p => !p), 1200);
+      return () => clearInterval(t);
+    }, []);
+    const t = (uz, en) => currentLang === 'uz' ? uz : en;
+
+    return (
+      <div className="bg-[#030712] border border-slate-900 rounded-xl p-4 mb-5 relative overflow-hidden flex flex-col items-center justify-center min-h-[190px]">
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+             style={{backgroundImage:'linear-gradient(to right,#00cfc0 1px,transparent 1px),linear-gradient(to bottom,#00cfc0 1px,transparent 1px)',backgroundSize:'16px 16px'}}></div>
+        <div className="w-full flex items-center justify-between mb-3 text-[9px] font-mono tracking-widest text-[#00cfc0]">
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 bg-[#00cfc0] rounded-full animate-ping"></span>
+            <span>{t("JONLI CHIZMA: AKTIV", "DIGITAL TWIN PATHWAY • ACTIVE")}</span>
+          </span>
+          <span className="text-slate-500">SYS_V24</span>
+        </div>
+
+        {stepId === 1 && (
+          <div className="w-full max-w-md flex flex-col items-center gap-2">
+            <svg viewBox="0 0 400 120" className="w-full h-24 fill-none" style={{stroke:'rgba(6,182,212,0.4)',strokeWidth:1.5}}>
+              <line x1="20" y1="100" x2="380" y2="100" stroke="#1e293b" strokeDasharray="3,3"/>
+              <path d="M40,90 L60,95 L340,95 L360,90 L360,60 L350,35 L120,35 L100,55 L40,55 Z" stroke="#22d3ee" strokeWidth="2" fill="none"/>
+              <line x1="120" y1="35" x2="120" y2="95" stroke="rgba(6,182,212,0.65)"/>
+              <line x1="200" y1="35" x2="200" y2="95" stroke="rgba(6,182,212,0.65)"/>
+              <line x1="280" y1="35" x2="280" y2="95" stroke="rgba(6,182,212,0.65)"/>
+              <circle cx="120" cy="35" r={pulse ? 5 : 2} fill="#fbbf24"/>
+              <circle cx="200" cy="95" r={pulse ? 2 : 5} fill="#facc15"/>
+              <circle cx="280" cy="35" r={pulse ? 6 : 3} fill="#fb923c"/>
+            </svg>
+            <span className="text-[10px] font-mono text-amber-400 uppercase font-bold tracking-wider text-center">
+              {t("KUKA Robotlari: Karkas payvandlash (Faol)", "KUKA Robotization: Frame welding active")}
+            </span>
+          </div>
+        )}
+
+        {stepId === 2 && (
+          <div className="w-full max-w-md flex flex-col items-center gap-2">
+            <svg viewBox="0 0 400 120" className="w-full h-24 fill-none" style={{stroke:'rgba(20,184,166,0.4)',strokeWidth:1.5}}>
+              <rect x="30" y="50" width="340" height="55" stroke="rgba(20,184,166,0.3)" fill="rgba(20,184,166,0.05)"/>
+              <path d="M45,80 L65,85 L335,85 L355,80 L355,57 L345,37 L120,37 L100,53 L45,53 Z" stroke="#00cfc0" strokeWidth="2" fill="rgba(0,207,192,0.15)"/>
+              <text x="70"  y={pulse ? 65 : 75} fill="#5eead4" fontSize="8" fontFamily="monospace">H+</text>
+              <text x="200" y={pulse ? 70 : 80} fill="#00dfd0" fontSize="8" fontFamily="monospace">DFT•Ni2+</text>
+              <text x="310" y={pulse ? 65 : 80} fill="#5eead4" fontSize="8" fontFamily="monospace">Epoxy+</text>
+            </svg>
+            <span className="text-[10px] font-mono text-teal-400 uppercase font-bold tracking-wider text-center">
+              {t("Kataforez vannasi: Korroziyadan 15 yillik himoya", "Cathodic cataphoresis: 15-year corrosion protection active")}
+            </span>
+          </div>
+        )}
+
+        {stepId === 3 && (
+          <div className="w-full max-w-md flex flex-col items-center gap-2">
+            <svg viewBox="0 0 400 120" className="w-full h-24 fill-none" style={{stroke:'rgba(34,197,94,0.4)',strokeWidth:1.5}}>
+              <path d="M40,90 L60,95 L340,95 L360,90 L360,60 L350,35 L120,35 L100,55 L40,55 Z" stroke="#4ade80" strokeWidth="2" fill="none"/>
+              <path d="M40,55 L100,55 L120,35 L350,35 L360,60 L240,60 L230,90 L60,95 L40,90 Z" fill="rgba(34,197,94,0.2)"/>
+              <circle cx="110" cy="15" r="4" fill="#10b981"/>
+              <circle cx="260" cy="15" r="4" fill="#4ade80"/>
+              <line x1="110" y1="15" x2="120" y2="35" stroke="#10b981" strokeWidth="2" strokeDasharray="2,2"/>
+              <line x1="260" y1="15" x2="250" y2="35" stroke="#4ade80" strokeWidth="2" strokeDasharray="2,2"/>
+            </svg>
+            <span className="text-[10px] font-mono text-green-400 uppercase font-bold tracking-wider text-center">
+              {t("Elektrostatik bo'yash: Changsiz kamera (Faol)", "Electrostatic spray: Dustless curing chamber active")}
+            </span>
+          </div>
+        )}
+
+        {stepId === 4 && (
+          <div className="w-full max-w-md flex flex-col items-center gap-2">
+            <svg viewBox="0 0 400 120" className="w-full h-24 fill-none" style={{stroke:'rgba(59,130,246,0.4)',strokeWidth:1.5}}>
+              <path d="M40,90 L60,95 L340,95 L360,90 L360,60 L350,35 L120,35 L100,55 L40,55 Z" stroke="#6366f1" strokeWidth="1.5" fill="none"/>
+              <rect x="120" y="80" width="130" height="12" rx="2" stroke="#60a5fa" fill="rgba(30,58,138,0.85)" strokeWidth="2"/>
+              <line x1="145" y1="80" x2="145" y2="92" stroke="rgba(96,165,250,0.5)"/>
+              <line x1="170" y1="80" x2="170" y2="92" stroke="rgba(96,165,250,0.5)"/>
+              <line x1="195" y1="80" x2="195" y2="92" stroke="rgba(96,165,250,0.5)"/>
+              <ellipse cx="288" cy="85" rx="14" ry="10" stroke="#c084fc" fill="rgba(88,28,135,0.85)" strokeWidth="2"/>
+              <text x="135" y="73" fill="#60a5fa" fontSize="7" fontFamily="monospace">LTO BATTERIES</text>
+              <text x="255" y="70" fill="#c084fc" fontSize="7" fontFamily="monospace">350kW PMSM</text>
+            </svg>
+            <span className="text-[10px] font-mono text-blue-400 uppercase font-bold tracking-wider text-center">
+              {t("LTO Batareyalar va PMSM dvigatel o'rnatish", "EV Powertrain: LTO battery + PMSM motor fitting")}
+            </span>
+          </div>
+        )}
+
+        {stepId === 5 && (
+          <div className="w-full max-w-md flex flex-col items-center gap-2">
+            <svg viewBox="0 0 400 120" className="w-full h-24 fill-none" style={{stroke:'rgba(168,85,247,0.4)',strokeWidth:1.5}}>
+              <path d="M40,90 L60,95 L340,95 L360,90 L360,60 L350,35 L120,35 L100,55 L40,55 Z" stroke="#a855f7" strokeWidth="2" fill="none"/>
+              <line x1="30" y1="15" x2="370" y2="15" stroke="#1e293b" strokeWidth="2"/>
+              <line x1="60"  y1="15" x2="60"  y2="50" stroke="rgba(96,165,250,0.7)" strokeDasharray="3,6"/>
+              <line x1="180" y1="15" x2="180" y2="60" stroke="rgba(96,165,250,0.7)" strokeDasharray="2,4"/>
+              <line x1="300" y1="15" x2="300" y2="50" stroke="rgba(96,165,250,0.7)" strokeDasharray="3,6"/>
+              <rect x="15" y="25" width="60" height="18" rx="2" fill="#020617" stroke="#1e293b"/>
+              <text x="20" y="37" fill="#4ade80" fontSize="8" fontFamily="monospace">ABS: PASS</text>
+              <rect x="325" y="25" width="60" height="18" rx="2" fill="#020617" stroke="#1e293b"/>
+              <text x="330" y="37" fill="#4ade80" fontSize="8" fontFamily="monospace">SEAL:100%</text>
+            </svg>
+            <span className="text-[10px] font-mono text-purple-400 uppercase font-bold tracking-wider text-center">
+              {t("Yakuniy sifat nazorati: ABS, dush va ECU diagnostikasi", "Final QC: ABS brakes, water seal, ECU diagnostics")}
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* ---------------------------------------------------------- */
+  /* GPS ROUTE MAP                                               */
+  /* ---------------------------------------------------------- */
+  function GPSRouteLiveMap({ activeOrder, currentLang }) {
+    const t = (uz, en) => currentLang === 'uz' ? uz : en;
+
+    const cargo = (() => {
+      const p = activeOrder.routeProgress;
+      if (p === 1) return { x: 23, y: 59, label: t("Ehtiyot qismlar Khorgosga yo'lda", "Key components in transit to border") };
+      if (p === 2) return { x: 62, y: 50, label: t("Andijon: Kataforez vannasida", "Andijan Plant: Cathodic bath active") };
+      if (p === 3) return { x: 62, y: 50, label: t("Andijon: Robotlashgan bo'yash", "Andijan Plant: Robotic coating active") };
+      if (p === 4) {
+        if (activeOrder.id === 'AND-112') return { x: 75, y: 39, label: t("Toshkentga yetkazilmoqda", "En route to Tashkent (Kamchik Pass)") };
+        if (activeOrder.id === 'AND-039') return { x: 75, y: 54, label: t("Farg'onaga transport", "Transit to Fergana valley depot") };
+        return { x: 71, y: 65, label: t("Samarqandga tranzit", "En route to Samarkand") };
+      }
+      if (activeOrder.id === 'AND-112') return { x: 88, y: 28, label: t("Toshkent: Chilonzor depoga topshirildi", "Delivered to Tashkent Depot #3") };
+      if (activeOrder.id === 'AND-039') return { x: 88, y: 58, label: t("Farg'ona: Depoga topshirildi", "Delivered to Fergana Depot") };
+      return { x: 80, y: 80, label: t("Samarqand: Registon deposi", "Delivered to Samarkand Registon depot") };
+    })();
+
+    return (
+      <div className="bg-white border border-slate-200 rounded-xl p-4 mt-6 text-left relative overflow-hidden shadow-sm">
+        <div className="flex justify-between items-center pb-2 border-b border-slate-200 mb-3">
+          <div className="flex items-center gap-1.5 font-mono text-[9px] text-[#014e96] font-extrabold uppercase">
+            <Compass className="w-4 h-4" style={{animationDuration:'12s'}} />
+            <span>{t("JONLI GPS TRANZIT XARITASI (LANZHOU → ANDIJON)", "LIVE GPS TRANSIT MAP (LANZHOU → ANDIJAN)")}</span>
+          </div>
+          <span className="text-[8px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+            BEACON {activeOrder.id}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
+          <div className="lg:col-span-3 bg-slate-50 border border-slate-200 rounded-lg p-2 relative min-h-[200px] flex items-center justify-center">
+            <svg viewBox="0 0 500 240" className="w-full max-h-[220px] fill-none select-none">
+              <path d="M50,168 L180,115" stroke="rgba(59,130,246,0.5)" strokeWidth="1.5" strokeDasharray="5,6"/>
+              <path d="M180,115 L310,120" stroke="rgba(59,130,246,0.5)" strokeWidth="1.5" strokeDasharray="4,4"/>
+              <path d="M310,120 L440,67"  stroke={activeOrder.id==='AND-112' ? 'rgba(59,130,246,0.5)' : '#e2e8f0'} strokeDasharray="2,3"/>
+              <path d="M310,120 L440,139" stroke={activeOrder.id==='AND-039' ? 'rgba(59,130,246,0.5)' : '#e2e8f0'} strokeDasharray="2,3"/>
+              <path d="M310,120 L400,192" stroke={activeOrder.id==='AND-001' ? 'rgba(59,130,246,0.5)' : '#e2e8f0'} strokeDasharray="2,3"/>
+
+              <g transform="translate(50,168)">
+                <circle r="9" stroke="#93c5fd" fill="rgba(219,234,254,0.1)"/>
+                <circle r="4" fill="#1d4ed8"/>
+                <text x="12" y="3" fill="#475569" fontSize="8" fontFamily="monospace" fontWeight="bold">Lanzhou HQ</text>
+              </g>
+              <g transform="translate(180,115)">
+                <circle r="7" stroke="#fcd34d" fill="rgba(254,243,199,0.1)"/>
+                <circle r="3" fill="#d97706"/>
+                <text x="10" y="-5" fill="#475569" fontSize="8" fontFamily="monospace" fontWeight="bold">Khorgos</text>
+              </g>
+              <g transform="translate(310,120)">
+                <circle r="11" stroke="#86efac" fill="rgba(220,252,231,0.1)"/>
+                <circle r="5" fill="#16a34a" className="animate-ping" opacity="0.7"/>
+                <circle r="4" fill="#16a34a"/>
+                <text x="-30" y="21" fill="#1e293b" fontSize="8" fontFamily="monospace" fontWeight="bold">Andijan Plant</text>
+              </g>
+              <g transform="translate(440,67)">
+                <circle r="6" stroke={activeOrder.id==='AND-112' ? '#3b82f6' : '#cbd5e1'} fill={activeOrder.id==='AND-112' ? 'rgba(219,234,254,0.2)' : 'white'}/>
+                <circle r="3" fill={activeOrder.id==='AND-112' ? '#2563eb' : '#94a3b8'}/>
+                <text x="10" y="3" fill={activeOrder.id==='AND-112' ? '#1d4ed8' : '#94a3b8'} fontSize="8" fontFamily="monospace">Tashkent</text>
+              </g>
+              <g transform="translate(440,139)">
+                <circle r="6" stroke={activeOrder.id==='AND-039' ? '#3b82f6' : '#cbd5e1'} fill={activeOrder.id==='AND-039' ? 'rgba(219,234,254,0.2)' : 'white'}/>
+                <circle r="3" fill={activeOrder.id==='AND-039' ? '#2563eb' : '#94a3b8'}/>
+                <text x="10" y="3" fill={activeOrder.id==='AND-039' ? '#1d4ed8' : '#94a3b8'} fontSize="8" fontFamily="monospace">Fergana</text>
+              </g>
+              <g transform="translate(400,192)">
+                <circle r="6" stroke={activeOrder.id==='AND-001' ? '#3b82f6' : '#cbd5e1'} fill={activeOrder.id==='AND-001' ? 'rgba(219,234,254,0.2)' : 'white'}/>
+                <circle r="3" fill={activeOrder.id==='AND-001' ? '#2563eb' : '#94a3b8'}/>
+                <text x="10" y="3" fill={activeOrder.id==='AND-001' ? '#1d4ed8' : '#94a3b8'} fontSize="8" fontFamily="monospace">Samarkand</text>
+              </g>
+
+              {/* Moving cargo dot */}
+              <g transform={'translate(' + (cargo.x * 5) + ',' + (cargo.y * 2.4) + ')'}>
+                <rect x="-12" y="-12" width="24" height="24" rx="4" stroke="#3b82f6" fill="rgba(219,234,254,0.3)" className="animate-pulse"/>
+                <circle r="7" fill="#1d4ed8"/>
+                <circle r="3" fill="white"/>
+                <rect x="-40" y="-22" width="80" height="13" rx="2" fill="white"/>
+                <text x="0" y="-13" textAnchor="middle" fill="#1e293b" fontSize="7" fontFamily="monospace" fontWeight="bold">{activeOrder.id}: EN ROUTE</text>
+              </g>
+            </svg>
+            <div className="absolute bottom-2 left-2 right-2 bg-white/95 border border-slate-200 shadow rounded px-2 py-1">
+              <p className="text-[10px] font-mono flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse inline-block"></span>
+                <span className="text-[#014e96] uppercase font-bold">{t("Hozirgi manzil:", "Geolocation:")}</span>
+                <span className="text-slate-700 font-semibold">{cargo.label}</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1 bg-slate-50 border border-slate-200 rounded-lg p-3 text-[11px] font-mono space-y-3">
+            <span className="text-[8px] font-black tracking-widest text-slate-400 uppercase block">{t("TRANZIT YO'NALISHI", "Transit Route")}</span>
+            <div><span className="text-[8px] text-slate-400 block uppercase">{t("KELIB CHIQISH:", "Origin:")}</span><span className="font-bold text-slate-800">Lanzhou (CN)</span></div>
+            <div className="border-l-2 border-blue-300 pl-2 space-y-2">
+              <div><span className="text-[8px] text-slate-400 block uppercase">{t("GUMRUK:", "Customs:")}</span><span className="text-slate-600">Khorgos Border</span></div>
+              <div><span className="text-[8px] text-slate-400 block uppercase">{t("ZAVOD:", "Factory:")}</span><span className="text-[#014e96] font-bold">Andijan (UZ)</span></div>
+            </div>
+            <div><span className="text-[8px] text-slate-400 block uppercase">{t("YAKUNIY PUNKT:", "Destination:")}</span>
+              <span className="font-extrabold text-blue-800 block">
+                {activeOrder.id==='AND-112' ? 'Tashkent (TSX)' : activeOrder.id==='AND-039' ? 'Fergana (FZ)' : 'Samarkand (SilkTour)'}
+              </span>
+            </div>
+            <div className="pt-2 border-t border-slate-200">
+              <span className="text-[8px] text-slate-400 uppercase block">GPS STATUS</span>
+              <span className="text-[#014e96] text-[10px] font-bold block">40.78°N 72.34°E</span>
+              <span className="text-[8px] text-slate-400">AES-256 SECURED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  /* ---------------------------------------------------------- */
+  /* MAIN FACTORY MONITORING COMPONENT                           */
+  /* ---------------------------------------------------------- */
+  function FactoryMonitoring({ currentLang }) {
+    const [activeStepId, setActiveStepId] = useState(2);
+    const [activeOrderId, setActiveOrderId] = useState('AND-039');
+    const [simRunning, setSimRunning] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sensorPulse, setSensorPulse] = useState(99.5);
+    const [completedBuses, setCompletedBuses] = useState(42);
+
+    const t = (uz, en) => currentLang === 'uz' ? uz : en;
+
+    const steps = [
+      {
+        id: 1, code: 'WELD-01',
+        label: { uz: 'Shassi va Karkasni Payvandlash', en: 'Robotic Chassis & Frame Welding' },
+        robotRate: 85, temperature: 1450, efficiency: 97.4, duration: '45 min',
+        desc: { uz: 'Yuqori mustahkamlikka ega po\'lat profillar KUKA robot-payvandlagichlar yordamida avtomatlashtirilgan tarzda birlashtiriladi.', en: 'High-strength carbon-steel profiles welded by KUKA robotic manipulators to form the monocoque chassis.' },
+        metrics: [
+          { name: { uz: 'Payvand mustahkamligi', en: 'Weld Tensile Integrity' }, value: '99.8%', progress: 99.8 },
+          { name: { uz: 'Lazer aniqlik og\'ishi', en: 'Laser Deflection' }, value: '0.02 mm', progress: 95 },
+          { name: { uz: 'Karkas buralish bardoshliligi', en: 'Torsional Tolerance' }, value: '450 MPa', progress: 88 }
+        ]
+      },
+      {
+        id: 2, code: 'CATH-02',
+        label: { uz: 'Korroziyaga Qarshi Kataforez', en: '12-Phase Cathodic Cataphoresis' },
+        robotRate: 98, temperature: 28, efficiency: 99.5, duration: '120 min',
+        desc: { uz: 'Avtobus korpusi 12 bosqichli kimyoviy-galvanik vannalarda korroziyadan 15 yillik himoya qatlamiga ega bo\'ladi.', en: 'The steel shell undergoes 12-phase chemical electrocoating for 15-year corrosion protection.' },
+        metrics: [
+          { name: { uz: 'Vanna konsentratsiyasi', en: 'Bath Active Ratio' }, value: sensorPulse.toFixed(1) + '%', progress: sensorPulse },
+          { name: { uz: 'Qoplama qalinligi', en: 'Dry Film Thickness' }, value: '22 µm', progress: 92 },
+          { name: { uz: 'Ionlash kuchlanishi', en: 'Ionization Voltage' }, value: '380 V', progress: 94 }
+        ]
+      },
+      {
+        id: 3, code: 'PAIN-03',
+        label: { uz: 'Yuqori Sifatli Robotli Bo\'yoq', en: 'High-Gloss Electrostatic Painting' },
+        robotRate: 95, temperature: 65, efficiency: 96.8, duration: '60 min',
+        desc: { uz: 'Elektrostatik aylanuvchi purkagichlar va robotlar orqali changsiz toza xonada ikki qatlamli yorqin sirt qoplama beriladi.', en: 'Electrostatic rotary bell atomization in pressurized cleanroom delivering dual-tone immaculate paint.' },
+        metrics: [
+          { name: { uz: 'Adgeziya ko\'rsatkichi', en: 'Paint Adhesion Score' }, value: '98.9%', progress: 98.9 },
+          { name: { uz: 'Yaltiroqlik indeksi', en: 'Gloss Reflection' }, value: '92 GU', progress: 92 },
+          { name: { uz: 'HEPA filtrlash', en: 'HEPA Air Purity' }, value: '99.9%', progress: 99.9 }
+        ]
+      },
+      {
+        id: 4, code: 'ASSE-04',
+        label: { uz: 'Elektr va LTO Batareyalar', en: 'EV Powertrain & Battery Fitting' },
+        robotRate: 45, temperature: 24, efficiency: 98.2, duration: '180 min',
+        desc: { uz: 'Portlashdan himoyalangan LTO batareyalar, tortish motorlari, havo klapanlari va pnevmatik osmalar to\'plami o\'rnatiladi.', en: 'Sub-zero crash-isolated LTO lithium-titanate battery modules, synch motors, and pneumatic valves fitted.' },
+        metrics: [
+          { name: { uz: 'LTO izolatsiya', en: 'HV Isolation Resistance' }, value: '500 MΩ', progress: 100 },
+          { name: { uz: 'Bolt qotirish nazorati', en: 'Fastener Torque Control' }, value: '99.2%', progress: 99.2 },
+          { name: { uz: 'Pnevmatik germetiklik', en: 'Pneumatic Air Sealing' }, value: '0.00 bar/h', progress: 96 }
+        ]
+      },
+      {
+        id: 5, code: 'TEST-05',
+        label: { uz: 'Yakuniy Sifat va Sinov', en: 'Final Quality & Track Validation' },
+        robotRate: 20, temperature: 18, efficiency: 100, duration: '90 min',
+        desc: { uz: 'Dush xonasida suv o\'tkazmaslik sinovi, ABS tormoz tizimi sozlashlari va ECU datchiklar to\'liq diagnostikasi.', en: 'Pressurized shower leak test, ABS brake calibration, and full ECU sensor diagnostics completed.' },
+        metrics: [
+          { name: { uz: 'Salon germetikligi', en: 'Cabin Leak Guard' }, value: '100%', progress: 100 },
+          { name: { uz: 'Regen tormoz qaytarishi', en: 'Regen Brake Recovery' }, value: '28.5%', progress: 85 },
+          { name: { uz: 'ECU diagnostikasi', en: 'ECU Sensor Health' }, value: '0 xato', progress: 100 }
+        ]
+      }
+    ];
+
+    const orders = [
+      {
+        id: 'AND-039', routeProgress: 2,
+        client: { uz: 'Farg\'ona Viloyat Transport Boshqarmasi', en: 'Fergana District Transit Authority' },
+        qty: { uz: '10 dona — Delfin 12m elektr avtobus', en: '10 Units — Dolphin 12m Low-Floor E-Bus' },
+        deliverDate: { uz: '18 Iyun 2026', en: 'June 18, 2026' },
+        carrier: { uz: 'Andijon Logistics Corp (#552)', en: 'Andijan Logistics Corp (Convoy #552)' },
+        destination: { uz: 'Farg\'ona, 102-yo\'lovchi deposi', en: 'Fergana City, Transit Depot #102' },
+        logBook: [
+          { time: '10:15', uz: 'Shassi robotli payvandlash tugatildi.', en: 'Monocoque frame robotic welding complete.' },
+          { time: '12:00', uz: 'Kataforez vannasida ishlov (Amaldagi).', en: '12-phase cathodic electrobath plating active.' },
+          { time: 'Rejada', uz: 'Bo\'yash liniyasiga yo\'naltiriladi.', en: 'Next: Electrostatic dual-tone coating.' }
+        ]
+      },
+      {
+        id: 'AND-112', routeProgress: 4,
+        client: { uz: 'Toshkent "Toshshahartransxizmat" AJ', en: 'Tashkent Transit Alliance OJSC (TSX)' },
+        qty: { uz: '15 dona — Ikki qavatli Premium avtobus', en: '15 Units — GTQ6122BEV Double-Decker Tourer' },
+        deliverDate: { uz: '25 Iyun 2026', en: 'June 25, 2026' },
+        carrier: { uz: 'Sino-Uz Trans Forwarder LLC', en: 'Sino-Uz Trans Forwarder LLC (Fleet 04)' },
+        destination: { uz: 'Toshkent, Chilonzor, 3-avtosaroy', en: 'Tashkent, Chilanzar, Transit Depot #3' },
+        logBook: [
+          { time: 'Tugadi', uz: 'Payvandlash va kataforez tugadi.', en: 'Welding and cathodic coating completed.' },
+          { time: 'Tugadi', uz: 'Elektrostatik bo\'yoq qoplandi.', en: 'Electrostatic paint coat applied.' },
+          { time: '14:20', uz: 'LTO batareyalar va PMSM dvigatel o\'rnatilmoqda (Amaldagi).', en: 'LTO cells and PMSM motor fitting in progress.' }
+        ]
+      },
+      {
+        id: 'AND-001', routeProgress: 1,
+        client: { uz: 'Samarqand "Silk Road Tour" agentligi', en: 'Samarkand "Silk Road Tour" Agency' },
+        qty: { uz: '8 dona — Vintage tramvay avtobus', en: '8 Units — Heritage Antique Tram-Buses' },
+        deliverDate: { uz: '30 Iyun 2026', en: 'June 30, 2026' },
+        carrier: { uz: 'SilkRoad Express Cargo', en: 'SilkRoad Express Logistics LLC' },
+        destination: { uz: 'Samarqand, Registon maydoni, turistik depo', en: 'Samarkand Registon Tourist Depot' },
+        logBook: [
+          { time: '09:00', uz: 'Ishlab chiqarish chizmalari tasdiqlandi.', en: 'Production drawings signed and approved.' },
+          { time: 'Hozir', uz: 'Karkas payvandlash boshlandi (Amaldagi).', en: 'Chassis framing active.' }
+        ]
+      }
+    ];
+
+    const activeOrder = orders.find(o => o.id === activeOrderId) || orders[0];
+    const selectedStep = steps.find(s => s.id === activeStepId) || steps[1];
+
+    useEffect(() => {
+      if (!simRunning) return;
+      const timer = setInterval(() => {
+        setSensorPulse(p => parseFloat(Math.min(100, Math.max(90, p + (Math.random()*0.4-0.2))).toFixed(1)));
+        if (Math.random() < 0.05) setCompletedBuses(c => c + 1);
+      }, 2500);
+      return () => clearInterval(timer);
+    }, [simRunning]);
+
+    const filteredOrders = orders.filter(o => {
+      const q = searchQuery.toLowerCase();
+      return o.id.toLowerCase().includes(q) || o.client[currentLang].toLowerCase().includes(q);
+    });
+
+    const progressSteps = [
+      { uz: 'Shassi', en: 'Chassis' },
+      { uz: 'Kataforez', en: 'Cataphoresis' },
+      { uz: 'Bo\'yash', en: 'Painting' },
+      { uz: 'Butlash', en: 'Assembly' },
+      { uz: 'Eksport', en: 'Shipping' }
+    ];
+
+    return (
+      <div className="bg-slate-50 text-slate-800 min-h-screen py-8 px-4 font-sans antialiased relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+             style={{backgroundImage:'linear-gradient(to right,#000 1px,transparent 1px),linear-gradient(to bottom,#000 1px,transparent 1px)',backgroundSize:'32px 32px'}}></div>
+
+        <div className="max-w-7xl mx-auto space-y-8 relative z-10">
+
+          {/* ---- HEADER ---- */}
+          <div className="text-center space-y-3 max-w-4xl mx-auto">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-50 border border-cyan-200 text-cyan-700 font-mono text-[10px] uppercase font-bold tracking-widest rounded-full shadow-sm">
+              <Activity className="w-3 h-3" />
+              {t("ANDIJON AVTOBUS JONLI MONITORING TIZIMI", "Andijan Plant Live Monitoring System")}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#01254a] tracking-tight leading-tight">
+              {t("Andijon Zavodi: Jonli Monitoring", "Andijan Plant: Live Monitoring & Digital Twin")}
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              {t(
+                "Andijon avtobus zavodining butun ishlab chiqarish jarayoni va buyurtmalar tranzitini real vaqtda kuzatish portali.",
+                "Real-time monitoring of the Andijan factory: robotic welding, cataphoresis, painting, EV assembly, and order logistics."
+              )}
+            </p>
+          </div>
+
+          {/* ---- SECTION 1: ASSEMBLY MONITOR ---- */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xl">
+            {/* Header */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between pb-6 border-b border-slate-100 gap-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                  <span className="text-xs font-mono font-bold tracking-widest text-emerald-600 uppercase">{t("JONLI MONITORING", "Live Workshop Monitor")}</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#01254a]">{t("Robotlashtirilgan Ishlab Chiqarish", "Robotized Production Line")}</h3>
+              </div>
+              <div className="flex flex-wrap gap-3 items-center">
+                <div className="bg-[#f0f4f9] border border-slate-200 rounded-xl px-4 py-2 min-w-[100px]">
+                  <div className="text-[9px] font-bold text-[#014e96] uppercase tracking-wide">{t("MODEL", "Models")}</div>
+                  <div className="text-xl font-black text-[#014e96] font-mono">10 <span className="text-[10px] text-slate-500">{t("ta", "")}</span></div>
+                </div>
+                <div className="bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-2 min-w-[100px]">
+                  <div className="text-[9px] font-bold text-emerald-700 uppercase tracking-wide">{t("ROBOT", "Automation")}</div>
+                  <div className="text-xl font-black text-emerald-700 font-mono">55%</div>
+                </div>
+                <div className="bg-amber-50 border border-amber-100 rounded-xl px-4 py-2 min-w-[100px]">
+                  <div className="text-[9px] font-bold text-amber-700 uppercase tracking-wide">{t("BUGUN", "Today")}</div>
+                  <div className="text-xl font-black text-amber-700 font-mono">{completedBuses} <span className="text-[10px]">{t("ta", "buses")}</span></div>
+                </div>
+                <button onClick={() => setSimRunning(r => !r)}
+                  className={'p-2.5 rounded-xl border text-xs font-bold font-mono transition-all cursor-pointer ' +
+                    (simRunning ? 'bg-red-50 border-red-300 text-red-600' : 'bg-green-50 border-green-300 text-green-600')}>
+                  {simRunning ? <Pause className="w-4 h-4"/> : <Play className="w-4 h-4"/>}
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+              {/* Steps list */}
+              <div className="xl:col-span-5 flex flex-col gap-3">
+                <div className="text-[10px] uppercase tracking-widest font-black text-slate-400 font-mono mb-1">
+                  {t("ISHLAB CHIQARISH BOSQICHLARI", "Production Milestones")}
+                </div>
+                {steps.map(step => {
+                  const isActive = step.id === activeStepId;
+                  const isDone = step.id < activeStepId;
+                  return (
+                    <button key={step.id} onClick={() => setActiveStepId(step.id)}
+                      className={'w-full p-3.5 rounded-xl border transition-all text-left relative flex items-center gap-4 cursor-pointer group ' +
+                        (isActive ? 'bg-[#014e96] border-[#014e96] text-white shadow-md' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100')}>
+                      {isActive && <div className="absolute top-0 bottom-0 left-0 w-1 bg-cyan-400 rounded-l-xl"></div>}
+                      <div className={'w-8 h-8 rounded-full flex items-center justify-center shrink-0 border font-mono font-bold text-xs ' +
+                        (isActive ? 'bg-blue-300/30 border-blue-200 text-white' : isDone ? 'bg-emerald-50 border-emerald-400 text-emerald-600' : 'bg-white border-slate-200 text-slate-400')}>
+                        {isDone ? <CheckCircle className="w-4 h-4"/> : '0'+step.id}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-0.5">
+                          <span className={'text-[8px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded border ' +
+                            (isActive ? 'bg-blue-800/40 text-blue-200 border-blue-700' : 'bg-slate-200 text-slate-600 border-slate-300')}>
+                            {step.code}
+                          </span>
+                          {isActive && <span className="text-[8px] font-mono text-cyan-200 font-bold animate-pulse">{t("AKTIV", "ACTIVE")}</span>}
+                        </div>
+                        <div className={'text-xs font-extrabold truncate ' + (isActive ? 'text-white' : 'text-slate-800')}>{step.label[currentLang]}</div>
+                      </div>
+                      <ChevronRight className={'w-4 h-4 ' + (isActive ? 'text-cyan-300' : 'text-slate-400')}/>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Telemetry panel */}
+              <div className="xl:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col gap-4">
+                <div className="flex justify-between items-center border-b border-slate-200 pb-3">
+                  <div>
+                    <div className="text-[9px] font-mono text-slate-400 uppercase tracking-widest mb-0.5">{t("STANSIYA TELEMETRIYASI", "Station Diagnostics")}</div>
+                    <div className="text-sm font-black text-[#014e96] flex items-center gap-1.5">
+                      <Cpu className="w-4 h-4 animate-spin" style={{animationDuration:'6s'}}/>
+                      {selectedStep.code} — {selectedStep.label[currentLang]}
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-mono text-[9px] font-extrabold uppercase">
+                    {t("NORMAL", "OK STATUS")}
+                  </span>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-lg p-3 text-xs text-slate-700 leading-relaxed">
+                  {selectedStep.desc[currentLang]}
+                </div>
+
+                <StepVisualSchematic stepId={selectedStep.id} currentLang={currentLang}/>
+
+                <div>
+                  <div className="text-[9px] uppercase tracking-widest font-black text-slate-400 font-mono mb-2">{t("FAOL SENSOR KO'RSATKICHLARI", "Active Sensor Readings")}</div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {selectedStep.metrics.map((m, i) => (
+                      <div key={i} className="bg-white border border-slate-200 p-2.5 rounded-lg shadow-sm">
+                        <div className="text-[8px] text-slate-500 font-bold uppercase truncate mb-1">{m.name[currentLang]}</div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-xs font-mono font-black text-slate-800">{m.value}</span>
+                          <div className="w-12 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-[#014e96] h-full rounded-full transition-all duration-700" style={{width: m.progress+'%'}}></div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-2 border-t border-slate-200 pt-3 text-[10px] font-mono">
+                  <div><div className="text-[8px] text-slate-400 uppercase">{t("Robot", "Automation")}</div><div className="font-extrabold text-slate-800">{selectedStep.robotRate}%</div></div>
+                  <div><div className="text-[8px] text-slate-400 uppercase">{t("Harorat", "Temp")}</div><div className="font-extrabold text-amber-600">{selectedStep.temperature}°C</div></div>
+                  <div><div className="text-[8px] text-slate-400 uppercase">{t("Samaradorlik", "Efficiency")}</div><div className="font-extrabold text-emerald-600">{selectedStep.efficiency}%</div></div>
+                  <div><div className="text-[8px] text-slate-400 uppercase">{t("Davomiyligi", "Duration")}</div><div className="font-extrabold text-[#014e96]">{selectedStep.duration}</div></div>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[10px] font-mono">
+                  <span className="text-slate-500 flex items-center gap-1.5">
+                    <Sliders className="w-3.5 h-3.5 text-blue-600 animate-spin" style={{animationDuration:'12s'}}/>
+                    {t("INDUSTRY 4.0 DIGITAL TWIN PASSPORT", "Industry 4.0 Digital Twin Passport")}
+                  </span>
+                  <div className="flex gap-1.5">
+                    <span className="px-2 py-1 bg-white border border-slate-200 rounded font-bold text-slate-600 cursor-pointer">{t("Standart", "Standard")}</span>
+                    <span className="px-2 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-bold cursor-pointer">Boost ▲</span>
+                    <span className="px-2 py-1 bg-white border border-slate-200 rounded font-bold text-slate-600 cursor-pointer">{t("Servis", "Servicing")}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ---- SECTION 2: ORDERS ---- */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-slate-100 gap-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                  <span className="text-xs font-mono font-bold tracking-widest text-[#014e96] uppercase">{t("DILERLIK BUYURTMALARI", "Live Order Tracking")}</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#01254a]">{t("Buyurtmalarning Jonli Monitoringi", "Live Depot Tracking of Active Orders")}</h3>
+              </div>
+              <div className="flex gap-2 flex-wrap">
+                {orders.map(o => (
+                  <button key={o.id} onClick={() => setActiveOrderId(o.id)}
+                    className={'px-3 py-1.5 rounded-lg text-xs font-mono font-black cursor-pointer transition-all ' +
+                      (o.id === activeOrderId ? 'bg-[#014e96] text-white shadow' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50')}>
+                    {t("Buyurtma:", "Order:")} {o.id}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+              {/* Progress + map */}
+              <div className="xl:col-span-8 bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-4 mb-5 gap-3">
+                  <div className="text-xs font-mono font-bold text-slate-700">{t("ISHLAB CHIQARISH BOSQICH CHIZMASI", "Assembly Lifecycle Progress")}</div>
+                  <div className="relative w-full sm:w-56">
+                    <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                      placeholder={t("ID yoki xaridor...", "Search ID or buyer...")}
+                      className="w-full bg-white border border-slate-200 text-xs rounded-lg pl-7 pr-3 py-1.5 focus:outline-none focus:border-blue-400"/>
+                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2 top-2.5"/>
+                  </div>
+                </div>
+
+                {/* 5-step progress bar */}
+                <div className="py-6 px-4">
+                  <div className="relative">
+                    <div className="absolute top-[18px] left-0 right-0 h-[3px] bg-slate-200 -translate-y-1/2 rounded pointer-events-none"></div>
+                    <div className="absolute top-[18px] left-0 h-[3px] bg-[#014e96] -translate-y-1/2 rounded transition-all duration-700 pointer-events-none"
+                         style={{width: ((activeOrder.routeProgress-1)/4*100)+'%'}}></div>
+                    <div className="relative flex justify-between">
+                      {progressSteps.map((s, i) => {
+                        const done = i+1 < activeOrder.routeProgress;
+                        const cur  = i+1 === activeOrder.routeProgress;
+                        return (
+                          <div key={i} className="flex flex-col items-center z-10">
+                            <div className={'w-9 h-9 rounded-full border flex items-center justify-center font-mono font-bold text-xs ' +
+                              (cur ? 'bg-[#014e96] border-blue-400 text-white shadow-lg' : done ? 'bg-emerald-50 border-emerald-400 text-emerald-600' : 'bg-white border-slate-200 text-slate-400')}>
+                              {done ? <CheckCircle className="w-4 h-4"/> : i+1}
+                            </div>
+                            <span className={'text-[9px] sm:text-[10px] font-bold mt-1.5 whitespace-nowrap hidden sm:block ' +
+                              (cur ? 'text-[#014e96]' : done ? 'text-slate-600' : 'text-slate-400')}>
+                              {s[currentLang]}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <GPSRouteLiveMap activeOrder={activeOrder} currentLang={currentLang}/>
+
+                {/* Log */}
+                <div className="mt-6 bg-white border border-slate-200 rounded-xl p-4">
+                  <div className="text-xs font-mono font-black text-[#014e96] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Activity className="w-3.5 h-3.5 animate-pulse"/>
+                    {t("JONLI ISHLAB CHIQARISH JURNALI", "Live Production & Logistics Journal")}
+                  </div>
+                  <ul className="space-y-2.5 font-mono text-[11px] text-slate-700">
+                    {activeOrder.logBook.map((log, i) => (
+                      <li key={i} className="flex gap-4 items-start py-1 border-b border-slate-100 last:border-0">
+                        <span className="text-blue-600 font-extrabold shrink-0 w-14">{log.time}</span>
+                        <span className="flex-1"><span className="text-slate-400 mr-1">»</span>{log[currentLang]}</span>
+                        {i === activeOrder.logBook.length-1 &&
+                          <span className="px-1.5 py-0.5 bg-blue-50 border border-blue-200 text-[#014e96] rounded text-[9px] font-bold animate-pulse">ACTIVE</span>}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-3 pt-3 border-t border-slate-200 text-[10px] text-slate-400 italic">
+                    {t("* LTO batareyalar -40°C gacha barqaror. Har bir avtobus to'liq sertifikatlangan.", "* Satellite-linked tracking verifies chassis stress and HV circuit status 24/7.")}
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3">
+                  <span className="text-[10px] font-mono text-slate-400 italic">{t("Tizim: AES-256 xavfsiz kanal (Andijon ↔ Lanzhou).", "System: AES-256 secured channel (Andijan ↔ Lanzhou).")}</span>
+                  <div className="flex gap-2">
+                    <button onClick={() => alert(t("PDF hujjat yuklab olindi! (Demo)", "Contract PDF exported! (Demo)"))}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-[10px] font-bold text-slate-700 font-mono cursor-pointer hover:bg-slate-50">
+                      <FileText className="w-3.5 h-3.5 text-[#014e96]"/>
+                      {t("Hujjatlar (PDF)", "Contract PDF")}
+                    </button>
+                    <button onClick={() => alert(t("Jurnal yuklab olindi! (Demo)", "Log exported! (Demo)"))}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-lg text-[10px] font-bold text-emerald-700 font-mono cursor-pointer hover:bg-emerald-100">
+                      <Download className="w-3.5 h-3.5"/>
+                      {t("Jurnal (.TXT)", "Export log")}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Order detail sidebar */}
+              <div className="xl:col-span-4 bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col gap-4">
+                <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
+                  <Layers className="w-4 h-4 text-[#014e96]"/>
+                  <span className="text-xs uppercase tracking-widest font-black text-slate-700 font-mono">{t("BUYURTMA TAFSILOTI", "Order Dossier")}</span>
+                </div>
+
+                {[
+                  { label: { uz: 'Buyurtma ID:', en: 'Order ID:' }, value: activeOrder.id, cls: 'font-mono font-black text-slate-800' },
+                  { label: { uz: 'Xaridor:', en: 'Buyer:' }, value: activeOrder.client[currentLang], cls: 'font-bold text-slate-700' },
+                  { label: { uz: 'Transport turi:', en: 'Vehicle spec:' }, value: activeOrder.qty[currentLang], cls: 'font-black text-[#014e96] font-mono text-xs' },
+                  { label: { uz: 'Topshirish muddati:', en: 'Handover date:' }, value: activeOrder.deliverDate[currentLang], cls: 'font-bold text-amber-600 font-mono' },
+                  { label: { uz: 'Yuk tashuvchi:', en: 'Carrier:' }, value: activeOrder.carrier[currentLang], cls: 'font-semibold text-slate-700' },
+                  { label: { uz: 'Yetkazish manzili:', en: 'Destination:' }, value: activeOrder.destination[currentLang], cls: 'font-medium text-slate-700 text-[11px]' },
+                ].map((item, i) => (
+                  <div key={i} className="bg-white border border-slate-200 rounded-lg p-3 shadow-sm">
+                    <div className="text-[8px] text-slate-400 uppercase font-black mb-0.5">{item.label[currentLang]}</div>
+                    <div className={'text-xs leading-tight ' + item.cls}>{item.value}</div>
+                  </div>
+                ))}
+
+                <div className="bg-white border border-slate-200 rounded-xl p-3.5 mt-auto">
+                  <div className="text-[8px] font-mono text-slate-400 uppercase font-bold flex items-center gap-1 mb-1.5">
+                    <ShieldAlert className="w-3.5 h-3.5 text-blue-600"/>
+                    <span>IP68 DATCHIK KAFOLATI</span>
+                  </div>
+                  <p className="text-[10px] text-slate-600 leading-relaxed font-mono">
+                    {t("Har bir avtobus IP68 himoya darajasiga ega datchiklar bilan sinovdan o'tgan.", "All vehicles certified with IP68 dust/water resistant sensor modules.")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  /* ---- APP ROOT ---- */
+  function MonitoringApp() {
+    const [lang, setLang] = useState('uz');
+
+    useEffect(() => {
+      const stored = localStorage.getItem('cambell_lang') || 'uz';
+      setLang(stored === 'ru' ? 'en' : stored);
+
+      function onLangChange(e) {
+        const l = (e.detail && e.detail.lang) || 'uz';
+        setLang(l === 'ru' ? 'en' : l);
+      }
+      document.addEventListener('languageChanged', onLangChange);
+      return function() { document.removeEventListener('languageChanged', onLangChange); };
+    }, []);
+
+    return React.createElement(FactoryMonitoring, { currentLang: lang });
+  }
+
+  /* ---- MOUNT ---- */
+  try {
+    var domNode = document.getElementById('monitoring-root');
+    if (domNode) {
+      var root = ReactDOM.createRoot(domNode);
+      root.render(React.createElement(MonitoringApp, null));
+    }
+  } catch(err) {
+    console.error('Monitoring mount error:', err);
+    var errEl = document.getElementById('monitoring-root');
+    if (errEl) errEl.innerHTML = '<div class="mon-error">Xato: ' + err.message + '</div>';
+  }
+
+})();
+</script>
+
+<!-- Manual Babel.transform – uses classic runtime (no import statements) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var stat = document.getElementById('d-status');
+  function setStatus(msg, color) {
+    if (stat) { stat.textContent = msg; stat.style.color = color || '#fbbf24'; }
+  }
+  try {
+    if (!window.Babel)    { setStatus('✗ Babel yuklanmadi', '#f87171'); return; }
+    if (!window.React)    { setStatus('✗ React yuklanmadi', '#f87171'); return; }
+    if (!window.ReactDOM) { setStatus('✗ ReactDOM yuklanmadi', '#f87171'); return; }
+
+    var srcEl = document.getElementById('mon-jsx');
+    if (!srcEl) { setStatus('✗ JSX manba topilmadi', '#f87171'); return; }
+
+    setStatus('Babel.transform ishlanmoqda...', '#fbbf24');
+
+    var compiled = Babel.transform(srcEl.textContent, {
+      presets: [['react', { runtime: 'classic', pragma: 'React.createElement', pragmaFrag: 'React.Fragment' }]],
+      filename: 'monitoring.jsx'
+    }).code;
+
+    setStatus('Komponent ishga tushirilmoqda...', '#fbbf24');
+
+    // Execute compiled code; React & ReactDOM passed as args to avoid global conflicts
+    var fn = new Function('React', 'ReactDOM', compiled);
+    fn(window.React, window.ReactDOM);
+
+    setStatus('✓ Monitoring ishlayapti', '#4ade80');
+  } catch(e) {
+    setStatus('✗ ' + e.message, '#f87171');
+    var root = document.getElementById('monitoring-root');
+    if (root) root.innerHTML =
+      '<div style="color:red;font-family:monospace;padding:24px;background:#fff0f0;border:1px solid #fcc;border-radius:8px;margin:24px">' +
+      '<b>Xato:</b> ' + e.message +
+      (e.stack ? '<br><pre style="font-size:10px;margin-top:8px;white-space:pre-wrap">' + e.stack.slice(0,600) + '</pre>' : '') +
+      '</div>';
+  }
+});
+</script>
+
+</body>
+</html>
