@@ -1,4 +1,4 @@
-{
+﻿{
   "config": {
     "botName": {
       "uz": "Cambell Yordamchi",
@@ -11,9 +11,9 @@
       "en": "Hello! I'm the Cambell Andijan AI assistant. I can answer questions about our products, company, and contacts."
     },
     "fallback": {
-      "uz": "Kechirasiz, bu savolga aniq javob topa olmadim. Batafsil ma'lumot uchun +998 99 530 44 35 raqamiga qo'ng'iroq qiling yoki mirzakomilalimov02@gmail.com ga yozing.",
-      "ru": "Извините, я не нашёл точного ответа. Позвоните +998 99 530 44 35 или напишите на mirzakomilalimov02@gmail.com.",
-      "en": "Sorry, I couldn't find a precise answer. Please call +998 99 530 44 35 or email mirzakomilalimov02@gmail.com."
+      "uz": "Kechirasiz, bu savolga aniq javob topa olmadim. Batafsil ma'lumot uchun +998 94 010 00 11 raqamiga qo'ng'iroq qiling yoki info@cambell.uz ga yozing.",
+      "ru": "Извините, я не нашёл точного ответа. Позвоните +998 94 010 00 11 или напишите на info@cambell.uz.",
+      "en": "Sorry, I couldn't find a precise answer. Please call +998 94 010 00 11 or email info@cambell.uz."
     },
     "placeholder": {
       "uz": "Savolingizni yozing...",
@@ -40,12 +40,12 @@
       },
       {
         "keywords": ["telefon", "aloqa", "raqam", "qongiroq", "boglanish", "bog'lanish", "call", "hotline", "liniya"],
-        "answer": "Biz bilan bog'lanish:\n📞 Telefon: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Manzil: Andijon shahri, O'zbekiston\n⏰ Xizmat ko'rsatish liniyasi: 24/7",
+        "answer": "Biz bilan bog'lanish:\n📞 Telefon: +998 94 010 00 11\n📧 Email: info@cambell.uz\n📍 Manzil: Andijon shahri, O'zbekiston\n⏰ Xizmat ko'rsatish liniyasi: 24/7",
         "link": "contact.html"
       },
       {
         "keywords": ["email", "pochta", "gmail", "xat", "yozish"],
-        "answer": "Elektron pochta manzilimiz: mirzakomilalimov02@gmail.com. Savollaringiz yoki buyurtma uchun yozishingiz mumkin.",
+        "answer": "Elektron pochta manzilimiz: info@cambell.uz. Savollaringiz yoki buyurtma uchun yozishingiz mumkin.",
         "link": "contact.html"
       },
       {
@@ -75,7 +75,7 @@
       },
       {
         "keywords": ["ish", "vakansiya", "qabul", "join", "resume", "rezyume", "ishga", "bo'sh"],
-        "answer": "Cambell Andijan jamoasiga qo'shilish uchun iqtidorli mutaxassislarni qidiramiz. Rezyumengizni mirzakomilalimov02@gmail.com ga yuboring yoki +998 99 530 44 35 ga qo'ng'iroq qiling.",
+        "answer": "Cambell Andijan jamoasiga qo'shilish uchun iqtidorli mutaxassislarni qidiramiz. Rezyumengizni info@cambell.uz ga yuboring yoki +998 94 010 00 11 ga qo'ng'iroq qiling.",
         "link": "join.html"
       },
       {
@@ -85,11 +85,11 @@
       },
       {
         "keywords": ["narx", "baho", "qancha", "price", "cost", "stoimost"],
-        "answer": "Mahsulot narxlari model va konfiguratsiyaga qarab farq qiladi. Aniq narx uchun +998 99 530 44 35 raqamiga qo'ng'iroq qiling yoki mirzakomilalimov02@gmail.com ga yozing — mutaxassislarimiz yordam beradi."
+        "answer": "Mahsulot narxlari model va konfiguratsiyaga qarab farq qiladi. Aniq narx uchun +998 94 010 00 11 raqamiga qo'ng'iroq qiling yoki info@cambell.uz ga yozing — mutaxassislarimiz yordam beradi."
       },
       {
         "keywords": ["xizmat", "servis", "ta'mirlash", "tamir", "qollab", "qo'llab", "texnik", "support"],
-        "answer": "Cambell Andijan texnik xizmat ko'rsatish, yetkazib berish va mahalliy bozor rivojlantirish bilan shug'ullanadi. Xizmat ko'rsatish liniyasi: +998 99 530 44 35 (24/7)."
+        "answer": "Cambell Andijan texnik xizmat ko'rsatish, yetkazib berish va mahalliy bozor rivojlantirish bilan shug'ullanadi. Xizmat ko'rsatish liniyasi: +998 94 010 00 11 (24/7)."
       },
       {
         "keywords": ["rahmat", "tashakkur", "thanks", "spasibo"],
@@ -108,12 +108,12 @@
       },
       {
         "keywords": ["телефон", "контакт", "номер", "звонок", "связаться", "горячая", "линия"],
-        "answer": "Контакты:\n📞 Телефон: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Адрес: Андижан, Узбекистан\n⏰ Горячая линия: 24/7",
+        "answer": "Контакты:\n📞 Телефон: +998 94 010 00 11\n📧 Email: info@cambell.uz\n📍 Адрес: Андижан, Узбекистан\n⏰ Горячая линия: 24/7",
         "link": "contact.html"
       },
       {
         "keywords": ["email", "почта", "gmail", "написать"],
-        "answer": "Электронная почта: mirzakomilalimov02@gmail.com",
+        "answer": "Электронная почта: info@cambell.uz",
         "link": "contact.html"
       },
       {
@@ -143,7 +143,7 @@
       },
       {
         "keywords": ["работа", "вакансия", "карьера", "резюме", "join", "трудоустройство"],
-        "answer": "Мы ищем талантливых специалистов. Отправьте резюме на mirzakomilalimov02@gmail.com или позвоните +998 99 530 44 35.",
+        "answer": "Мы ищем талантливых специалистов. Отправьте резюме на info@cambell.uz или позвоните +998 94 010 00 11.",
         "link": "join.html"
       },
       {
@@ -153,11 +153,11 @@
       },
       {
         "keywords": ["цена", "стоимость", "сколько", "price", "cost"],
-        "answer": "Цены зависят от модели и комплектации. Для точной информации звоните +998 99 530 44 35 или пишите на mirzakomilalimov02@gmail.com."
+        "answer": "Цены зависят от модели и комплектации. Для точной информации звоните +998 94 010 00 11 или пишите на info@cambell.uz."
       },
       {
         "keywords": ["сервис", "обслуживание", "ремонт", "техническая", "поддержка"],
-        "answer": "Cambell Andijan предоставляет техническое обслуживание и поддержку. Горячая линия: +998 99 530 44 35 (24/7)."
+        "answer": "Cambell Andijan предоставляет техническое обслуживание и поддержку. Горячая линия: +998 94 010 00 11 (24/7)."
       },
       {
         "keywords": ["спасибо", "благодарю", "thanks"],
@@ -176,12 +176,12 @@
       },
       {
         "keywords": ["phone", "contact", "number", "call", "hotline", "reach"],
-        "answer": "Contact us:\n📞 Phone: +998 99 530 44 35\n📧 Email: mirzakomilalimov02@gmail.com\n📍 Address: Andijan, Uzbekistan\n⏰ Service Hotline: 24/7",
+        "answer": "Contact us:\n📞 Phone: +998 94 010 00 11\n📧 Email: info@cambell.uz\n📍 Address: Andijan, Uzbekistan\n⏰ Service Hotline: 24/7",
         "link": "contact.html"
       },
       {
         "keywords": ["email", "mail", "gmail", "write"],
-        "answer": "Email: mirzakomilalimov02@gmail.com",
+        "answer": "Email: info@cambell.uz",
         "link": "contact.html"
       },
       {
@@ -211,7 +211,7 @@
       },
       {
         "keywords": ["job", "career", "vacancy", "join", "resume", "hiring"],
-        "answer": "We are hiring talented professionals. Send your resume to mirzakomilalimov02@gmail.com or call +998 99 530 44 35.",
+        "answer": "We are hiring talented professionals. Send your resume to info@cambell.uz or call +998 94 010 00 11.",
         "link": "join.html"
       },
       {
@@ -221,11 +221,11 @@
       },
       {
         "keywords": ["price", "cost", "how much", "quote"],
-        "answer": "Prices depend on model and configuration. For accurate pricing call +998 99 530 44 35 or email mirzakomilalimov02@gmail.com."
+        "answer": "Prices depend on model and configuration. For accurate pricing call +998 94 010 00 11 or email info@cambell.uz."
       },
       {
         "keywords": ["service", "support", "maintenance", "repair", "technical"],
-        "answer": "Cambell Andijan provides technical support and maintenance. Service Hotline: +998 99 530 44 35 (24/7)."
+        "answer": "Cambell Andijan provides technical support and maintenance. Service Hotline: +998 94 010 00 11 (24/7)."
       },
       {
         "keywords": ["thank", "thanks", "appreciate"],

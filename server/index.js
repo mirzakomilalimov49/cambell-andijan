@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cambell Andijan — sayt serveri + AI chatbot API
  * Ishga tushirish: npm start
  * API kaliti: .env faylida GEMINI_API_KEY
@@ -42,7 +42,7 @@ function buildContext(lang) {
 
   return `
 KOMPANIYA: Cambell Andijan — Lanzhou Guangtong Andijon filiali
-Telefon: +998 99 530 44 35 | Email: mirzakomilalimov02@gmail.com | Manzil: Andijon, O'zbekiston
+Telefon: +998 94 010 00 11 | Email: info@cambell.uz | Manzil: Andijon, O'zbekiston
 Mahsulotlar: yangi energiya avtobuslari (8.5m–12m), elektr shahar avtobusi, koster, logistika V5, batareya va quvvatlash.
 YANGILIKLAR: ${newsLines.join('; ')}
 ASOSIY MA'LUMOTLAR: ${qaLines.join(' ')}
@@ -88,7 +88,7 @@ async function callGeminiOnce(model, message, replyLang, siteLang, history) {
       parts: [{
         text: `Siz Cambell Andijan kompaniyasining rasmiy AI yordamchisisiz (Lanzhou Guangtong Andijon filiali).
 Faqat berilgan kompaniya ma'lumotlariga asoslanib javob bering.
-Agar javobni bilmaysiz, +998 99 530 44 35 yoki mirzakomilalimov02@gmail.com ga murojaat qilishni ayting.
+Agar javobni bilmaysiz, +998 94 010 00 11 yoki info@cambell.uz ga murojaat qilishni ayting.
 Qisqa, muloyim va professional bo'ling. Markdown ishlatmang.
 ${langInstruction(replyLang, siteLang)}
 
