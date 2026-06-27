@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/chatbot.css">
 
-  <!-- Tailwind: disable preflight so it doesn't break cambell's own CSS -->
-  <script>window.tailwind = { config: { corePlugins: { preflight: false } } };</script>
+  <!-- Tailwind: scoped to #monitoring-root only, preflight off -->
+  <script>window.tailwind = { config: { corePlugins: { preflight: false }, important: '#monitoring-root' } };</script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- React 18 UMD -->
