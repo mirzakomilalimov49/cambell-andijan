@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21",
+  "updatedAt": "2026-07-01",
   "products": [
     {
       "id": "prod-12m",
@@ -9,14 +9,14 @@
         "title": "12m klassik avtobus",
         "summary": "Shahar va shahar atrofi yo'nalishlari uchun zamonaviy 12 metrli klassik avtobus.",
         "description": [
-          "Lanzhou Guangtong 12 metrli klassik avtobusi shahar ichidagi va shahar atrofidagi yo'nalishlar uchun mo'ljallangan. Yuqori o'tirish qulayligi, keng yo'lovchi salon va ishonchli dvigatel tizimi bilan ajralib turadi.",
+          "Lanzhou Guangtong 12 metrli klassik avtobusi shahar ichidagi va shahar atrofidagi yo'nalishlar uchun mo'ljallangan. Yuqori o'tirish qulayligi, keng yo'lovchi salon va ishonchli elektr yurish tizimi bilan ajralib turadi.",
           "Avtobus yirik shaharlar, aeroport yo'nalishlari va uzoq masofali shahar ichi marshrutlari uchun mos. Cambell Andijan O'zbekiston bozorida texnik xizmat va ehtiyot qismlar ta'minoti bilan ta'minlaydi."
         ],
         "specs": [
           { "label": "Uzunlik", "value": "12 000 mm" },
           { "label": "O'tirish joylari", "value": "35–45" },
-          { "label": "Yoqilg'i turi", "value": "Dizel / CNG (ixtiyoriy)" },
-          { "label": "Emissiya", "value": "Euro V / VI" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
+          { "label": "Emissiya", "value": "Nol emissiya" },
           { "label": "Qo'llanilish", "value": "Shahar va shahar atrofi" }
         ]
       },
@@ -24,14 +24,14 @@
         "title": "Классический автобус 12м",
         "summary": "Современный 12-метровый классический автобус для городских и пригородных маршрутов.",
         "description": [
-          "12-метровый классический автобус Lanzhou Guangtong предназначен для городских и пригородных линий. Отличается высоким комфортом пассажиров, просторным салоном и надёжной силовой установкой.",
+          "12-метровый классический автобус Lanzhou Guangtong предназначен для городских и пригородных линий. Отличается высоким комфортом пассажиров, просторным салоном и надёжным электрическим приводом.",
           "Подходит для крупных городов, аэропортовых маршрутов и длинных городских линий. Cambell Andijan обеспечивает техническое обслуживание и поставку запчастей на рынке Узбекистана."
         ],
         "specs": [
           { "label": "Длина", "value": "12 000 мм" },
           { "label": "Места", "value": "35–45" },
-          { "label": "Топливо", "value": "Дизель / CNG (опция)" },
-          { "label": "Эмиссия", "value": "Euro V / VI" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
+          { "label": "Эмиссия", "value": "Нулевые выбросы" },
           { "label": "Применение", "value": "Город и пригород" }
         ]
       },
@@ -39,14 +39,14 @@
         "title": "12m classic bus",
         "summary": "Modern 12-meter classic bus for urban and suburban routes.",
         "description": [
-          "The Lanzhou Guangtong 12m classic bus is designed for urban and suburban lines. It offers high passenger comfort, a spacious interior and a reliable powertrain.",
+          "The Lanzhou Guangtong 12m classic bus is designed for urban and suburban lines. It offers high passenger comfort, a spacious interior and a reliable electric powertrain.",
           "Suitable for major cities, airport shuttles and long urban routes. Cambell Andijan provides technical support and spare parts supply in Uzbekistan."
         ],
         "specs": [
           { "label": "Length", "value": "12,000 mm" },
           { "label": "Seats", "value": "35–45" },
-          { "label": "Fuel", "value": "Diesel / CNG (optional)" },
-          { "label": "Emission", "value": "Euro V / VI" },
+          { "label": "Energy type", "value": "New energy / Electric" },
+          { "label": "Emission", "value": "Zero emission" },
           { "label": "Application", "value": "Urban & suburban" }
         ]
       }
@@ -64,8 +64,8 @@
         "specs": [
           { "label": "Uzunlik", "value": "8 500 mm" },
           { "label": "O'tirish joylari", "value": "20–28" },
-          { "label": "Yoqilg'i turi", "value": "Dizel" },
-          { "label": "Emissiya", "value": "Euro V" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
+          { "label": "Emissiya", "value": "Nol emissiya" },
           { "label": "Qo'llanilish", "value": "Shahar ichki yo'nalishlar" }
         ]
       },
@@ -79,8 +79,8 @@
         "specs": [
           { "label": "Длина", "value": "8 500 мм" },
           { "label": "Места", "value": "20–28" },
-          { "label": "Топливо", "value": "Дизель" },
-          { "label": "Эмиссия", "value": "Euro V" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
+          { "label": "Эмиссия", "value": "Нулевые выбросы" },
           { "label": "Применение", "value": "Городские линии" }
         ]
       },
@@ -94,8 +94,8 @@
         "specs": [
           { "label": "Length", "value": "8,500 mm" },
           { "label": "Seats", "value": "20–28" },
-          { "label": "Fuel", "value": "Diesel" },
-          { "label": "Emission", "value": "Euro V" },
+          { "label": "Energy type", "value": "New energy / Electric" },
+          { "label": "Emission", "value": "Zero emission" },
           { "label": "Application", "value": "Urban lines" }
         ]
       }
@@ -113,7 +113,7 @@
         "specs": [
           { "label": "Uzunlik", "value": "10–12 m" },
           { "label": "O'tirish joylari", "value": "40–53" },
-          { "label": "Yoqilg'i turi", "value": "Dizel" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
           { "label": "Qulaylik", "value": "Konditsioner, USB, Wi-Fi (ixtiyoriy)" },
           { "label": "Qo'llanilish", "value": "Shaharlararo yo'nalishlar" }
         ]
@@ -128,13 +128,13 @@
         "specs": [
           { "label": "Длина", "value": "10–12 м" },
           { "label": "Места", "value": "40–53" },
-          { "label": "Топливо", "value": "Дизель" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
           { "label": "Комфорт", "value": "Кондиционер, USB, Wi-Fi (опция)" },
           { "label": "Применение", "value": "Междугородние маршруты" }
         ]
       },
       "en": {
-        "title": "classic road bus",
+        "title": "Classic road bus",
         "summary": "Intercity coach for comfortable long-distance routes.",
         "description": [
           "The classic road bus is built for intercity and regional routes. Spacious seats, air conditioning and luggage compartments ensure comfort on long journeys.",
@@ -143,7 +143,7 @@
         "specs": [
           { "label": "Length", "value": "10–12 m" },
           { "label": "Seats", "value": "40–53" },
-          { "label": "Fuel", "value": "Diesel" },
+          { "label": "Energy type", "value": "New energy / Electric" },
           { "label": "Comfort", "value": "A/C, USB, Wi-Fi (optional)" },
           { "label": "Application", "value": "Intercity routes" }
         ]
@@ -162,7 +162,7 @@
         "specs": [
           { "label": "Yuk hajmi", "value": "5–8 m³ (modelga qarab)" },
           { "label": "Yuk ko'tarish", "value": "1.5–3.5 tonna" },
-          { "label": "Yoqilg'i turi", "value": "Dizel / Elektr (ixtiyoriy)" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
           { "label": "Uzunlik", "value": "5.5–6.5 m" },
           { "label": "Qo'llanilish", "value": "Shahar logistikasi" }
         ]
@@ -177,7 +177,7 @@
         "specs": [
           { "label": "Объём кузова", "value": "5–8 м³ (в зависимости от модели)" },
           { "label": "Грузоподъёмность", "value": "1.5–3.5 тонны" },
-          { "label": "Топливо", "value": "Дизель / Электро (опция)" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
           { "label": "Длина", "value": "5.5–6.5 м" },
           { "label": "Применение", "value": "Городская логистика" }
         ]
@@ -192,7 +192,7 @@
         "specs": [
           { "label": "Cargo volume", "value": "5–8 m³ (model dependent)" },
           { "label": "Payload", "value": "1.5–3.5 tonnes" },
-          { "label": "Fuel", "value": "Diesel / Electric (optional)" },
+          { "label": "Energy type", "value": "New energy / Electric" },
           { "label": "Length", "value": "5.5–6.5 m" },
           { "label": "Application", "value": "Urban logistics" }
         ]
@@ -206,13 +206,13 @@
         "title": "Koster tijorat avtomobili",
         "summary": "Guruh tashish va korporativ xizmat uchun koster mikroavtobus.",
         "description": [
-          "Koster tijorat avtomobili mehmonxona, aeroport, korporativ va turistik guruh tashish uchun mo'ljallangan. Qulay salon, ishonchli dvigatel va past xarajat bilan ajralib turadi.",
+          "Koster tijorat avtomobili mehmonxona, aeroport, korporativ va turistik guruh tashish uchun mo'ljallangan. Qulay salon, ishonchli elektr yurish tizimi va past xarajat bilan ajralib turadi.",
           "Xususiy tashuvchilar, mehmonxonalar va tur operatorlari uchun ideal tanlov."
         ],
         "specs": [
           { "label": "O'tirish joylari", "value": "15–23" },
           { "label": "Uzunlik", "value": "6–7 m" },
-          { "label": "Yoqilg'i turi", "value": "Dizel / Benzin" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
           { "label": "Eshiklar", "value": "Yon eshik + orqa eshik" },
           { "label": "Qo'llanilish", "value": "Guruh tashish" }
         ]
@@ -221,28 +221,28 @@
         "title": "Коммерческий микроавтобус",
         "summary": "Микроавтобус для групповых и корпоративных перевозок.",
         "description": [
-          "Коммерческий микроавтобус предназначен для отелей, аэропортов, корпоративных и туристических групповых перевозок. Отличается комфортным салоном, надёжным двигателем и низкими расходами.",
+          "Коммерческий микроавтобус предназначен для отелей, аэропортов, корпоративных и туристических групповых перевозок. Отличается комфортным салоном, надёжным электрическим приводом и низкими расходами.",
           "Идеальный выбор для частных перевозчиков, отелей и туроператоров."
         ],
         "specs": [
           { "label": "Места", "value": "15–23" },
           { "label": "Длина", "value": "6–7 м" },
-          { "label": "Топливо", "value": "Дизель / Бензин" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
           { "label": "Двери", "value": "Боковая + задняя" },
           { "label": "Применение", "value": "Групповые перевозки" }
         ]
       },
       "en": {
-        "title": "coaster commercial vehicle",
+        "title": "Coaster commercial vehicle",
         "summary": "Coaster minibus for group and corporate transport.",
         "description": [
-          "The coaster commercial vehicle is designed for hotels, airports, corporate and tourist group transport. It offers a comfortable cabin, reliable engine and low operating costs.",
+          "The coaster commercial vehicle is designed for hotels, airports, corporate and tourist group transport. It offers a comfortable cabin, reliable electric powertrain and low operating costs.",
           "An ideal choice for private operators, hotels and tour companies."
         ],
         "specs": [
           { "label": "Seats", "value": "15–23" },
           { "label": "Length", "value": "6–7 m" },
-          { "label": "Fuel", "value": "Diesel / Petrol" },
+          { "label": "Energy type", "value": "New energy / Electric" },
           { "label": "Doors", "value": "Side + rear" },
           { "label": "Application", "value": "Group transport" }
         ]
@@ -312,8 +312,8 @@
         "specs": [
           { "label": "Uzunlik", "value": "10 500 mm" },
           { "label": "O'tirish joylari", "value": "30–38" },
-          { "label": "Yoqilg'i turi", "value": "Dizel / CNG" },
-          { "label": "Emissiya", "value": "Euro V / VI" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
+          { "label": "Emissiya", "value": "Nol emissiya" },
           { "label": "Qo'llanilish", "value": "Shahar yo'nalishlari" }
         ]
       },
@@ -327,8 +327,8 @@
         "specs": [
           { "label": "Длина", "value": "10 500 мм" },
           { "label": "Места", "value": "30–38" },
-          { "label": "Топливо", "value": "Дизель / CNG" },
-          { "label": "Эмиссия", "value": "Euro V / VI" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
+          { "label": "Эмиссия", "value": "Нулевые выбросы" },
           { "label": "Применение", "value": "Городские маршруты" }
         ]
       },
@@ -342,8 +342,8 @@
         "specs": [
           { "label": "Length", "value": "10,500 mm" },
           { "label": "Seats", "value": "30–38" },
-          { "label": "Fuel", "value": "Diesel / CNG" },
-          { "label": "Emission", "value": "Euro V / VI" },
+          { "label": "Energy type", "value": "New energy / Electric" },
+          { "label": "Emission", "value": "Zero emission" },
           { "label": "Application", "value": "Urban routes" }
         ]
       }
@@ -355,14 +355,14 @@
         "title": "9.5m klassik avtobus",
         "summary": "O'rta hajmli shahar marshrutlari uchun 9.5 metrli avtobus.",
         "description": [
-          "9.5 metrli klassik avtobus shahar ichidagi asosiy yo'nalishlar uchun mo'ljallangan. Iqtisodiy yoqilg'i sarfini va past ta'mirlash xarajatlarini ta'minlaydi.",
+          "9.5 metrli klassik avtobus shahar ichidagi asosiy yo'nalishlar uchun mo'ljallangan. Iqtisodiy energiya sarfini va past ta'mirlash xarajatlarini ta'minlaydi.",
           "Kichik va o'rta shaharlar jamoat transporti tizimini yangilash uchun mos mahsulot."
         ],
         "specs": [
           { "label": "Uzunlik", "value": "9 500 mm" },
           { "label": "O'tirish joylari", "value": "25–32" },
-          { "label": "Yoqilg'i turi", "value": "Dizel" },
-          { "label": "Emissiya", "value": "Euro V" },
+          { "label": "Energiya turi", "value": "Yangi energiya / Elektr" },
+          { "label": "Emissiya", "value": "Nol emissiya" },
           { "label": "Qo'llanilish", "value": "Shahar yo'nalishlari" }
         ]
       },
@@ -370,14 +370,14 @@
         "title": "Классический автобус 9.5м",
         "summary": "9.5-метровый автобус для городских маршрутов средней протяжённости.",
         "description": [
-          "9.5-метровый классический автобус предназначен для основных городских линий. Обеспечивает экономичный расход топлива и низкие затраты на обслуживание.",
+          "9.5-метровый классический автобус предназначен для основных городских линий. Обеспечивает экономичное энергопотребление и низкие затраты на обслуживание.",
           "Подходит для модернизации систем общественного транспорта в малых и средних городах."
         ],
         "specs": [
           { "label": "Длина", "value": "9 500 мм" },
           { "label": "Места", "value": "25–32" },
-          { "label": "Топливо", "value": "Дизель" },
-          { "label": "Эмиссия", "value": "Euro V" },
+          { "label": "Тип энергии", "value": "Новая энергия / Электро" },
+          { "label": "Эмиссия", "value": "Нулевые выбросы" },
           { "label": "Применение", "value": "Городские маршруты" }
         ]
       },
@@ -385,14 +385,14 @@
         "title": "9.5m classic bus",
         "summary": "9.5-meter bus for medium-length urban routes.",
         "description": [
-          "The 9.5m classic bus is designed for main urban lines, offering economical fuel consumption and low maintenance costs.",
+          "The 9.5m classic bus is designed for main urban lines, offering economical energy consumption and low maintenance costs.",
           "Suitable for upgrading public transport systems in small and medium cities."
         ],
         "specs": [
           { "label": "Length", "value": "9,500 mm" },
           { "label": "Seats", "value": "25–32" },
-          { "label": "Fuel", "value": "Diesel" },
-          { "label": "Emission", "value": "Euro V" },
+          { "label": "Energy type", "value": "New energy / Electric" },
+          { "label": "Emission", "value": "Zero emission" },
           { "label": "Application", "value": "Urban routes" }
         ]
       }
